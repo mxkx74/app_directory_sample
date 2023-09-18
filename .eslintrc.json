@@ -6,7 +6,8 @@
   "extends": [
     "standard-with-typescript",
     "plugin:react/recommended",
-    "no-relative-import-paths" // 絶対パスを強制する
+    "no-relative-import-paths", // 絶対パスを強制する
+    "unused-imports" // 未使用のimportをエラーにする
   ],
   "overrides": [
     {
@@ -33,6 +34,8 @@
         "rootDir": "src",
         "prefix": "@"
       }
-    ]
+    ],
+    // 未使用のimportをエラーにする
+    "unused-imports/no-unused-imports": "error"
   }
 }
