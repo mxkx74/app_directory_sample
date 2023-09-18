@@ -1,0 +1,22 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  },
+  "eslint.workingDirectories": [{ "mode": "auto" }], // .eslintrc*を見てESLintの適用を自動で行う
+  "eslint.format.enable": false,
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.lineNumbers": "on",
+  "editor.rulers": [80],
+  "editor.wordWrap": "on",
+  "typescript.enablePromptUseWorkspaceTsdk": true
+}
