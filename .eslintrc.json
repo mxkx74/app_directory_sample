@@ -1,0 +1,47 @@
+{
+  "root": true,
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "standard-with-typescript",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "no-relative-import-paths", "unused-imports"],
+  "rules": {
+    // 同一ディレクトリ以外はimportの絶対パスを強制
+    "no-relative-import-paths/no-relative-import-paths": [
+      "error",
+      {
+        "allowSameFolder": true,
+        "rootDir": "src",
+        "prefix": "@"
+      }
+    ],
+    // 未使用のimportをエラーにする
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "react/display-name": "off",
+    "@next/next/no-img-element": "off",
+    "no-use-before-define": "off",
+    "no-restricted-syntax": ["error", "TSEnumDeclaration"],
+    "react-hooks/exhaustive-deps": "error",
+    "react-hooks/rules-of-hooks": "error",
+
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/prefer-interface": "off",
+    "@typescript-eslint/no-extra-semi": "error",
+
+    // v6 で strict に移動したルールを有効化
+    "@typescript-eslint/no-non-null-assertion": "warn",
+    // v6 で stylistic に移動したルールを有効化
+    "no-empty-function": "off",
+    "@typescript-eslint/no-empty-function": "error",
+    "@typescript-eslint/adjacent-overload-signatures": "error",
+    "@typescript-eslint/no-empty-interface": "error",
+    "@typescript-eslint/no-inferrable-types": "error",
+    "@typescript-eslint/prefer-namespace-keyword": "error"
+  }
+}
