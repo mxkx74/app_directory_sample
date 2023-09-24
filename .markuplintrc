@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "markuplint:recommended"
+  ],
+  "excludeFiles": [
+    "src/**/*.test.tsx",
+    "src/**/*.stories.tsx"
+  ],
+  "nodeRules": [
+    {
+      "selector": "img",
+      "rules": {
+        "required-attr": [
+          "src",
+          "alt",
+          "width",
+          "height"
+        ]
+      }
+    }
+  ]
+}
