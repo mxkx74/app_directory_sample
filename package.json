@@ -14,6 +14,8 @@
     "fix": "run-s fix:*",
     "fix:eslint": "next lint --fix",
     "fix:prettier": "prettier . --write",
+    "package:check": "npx -p npm-check-updates -c 'ncu'",
+    "package:update": "npx npm-check-updates -u",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prepare": "husky install"
