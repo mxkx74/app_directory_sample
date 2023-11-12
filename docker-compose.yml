@@ -1,9 +1,10 @@
 version: '3'
 services:
-  frontend:
+  next:
     build:
       context: .
       dockerfile: ./dockerfiles/Dockerfile
+      target: development
     tty: true
     ports:
       - 3000:3000
