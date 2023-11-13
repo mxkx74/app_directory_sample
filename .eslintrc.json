@@ -38,6 +38,38 @@
     "@typescript-eslint/consistent-type-definitions": ["error", "type"],
     "@typescript-eslint/strict-boolean-expressions": "warn",
 
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin", // 組み込みモジュール
+          "external", // npm i したパッケージ
+          "internal", // 自作モジュール
+          "parent", // 親階層のファイル
+          "sibling", // 同階層のファイル
+          "index", // 同階層の index ファイル
+          "type" // 型定義ファイル
+        ],
+        "pathGroups": [
+          {
+            "pattern": "{react,react-dom/**,react-router-dom}",
+            "group": "builtin",
+            "position": "before"
+          },
+          {
+            "pattern": "@src/**",
+            "group": "parent",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ],
+
     // v6 で strict に移動したルールを有効化
     "@typescript-eslint/no-non-null-assertion": "warn",
     // v6 で stylistic に移動したルールを有効化
