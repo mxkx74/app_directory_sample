@@ -1,0 +1,36 @@
+.wrapper {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  padding: 0.5rem;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.nav {
+  display: inline-flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+
+  li {
+    position: relative;
+    list-style: none;
+
+    a {
+      color: #333;
+      text-decoration: none;
+    }
+
+    &:not(:last-child)::after {
+      position: absolute;
+      top: 0;
+      right: -0.5rem;
+      display: block;
+      width: 1px;
+      height: 1rem;
+      content: '';
+      background-color: #ccc;
+    }
+  }
+}

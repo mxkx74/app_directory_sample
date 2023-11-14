@@ -5,6 +5,8 @@ next.config.js
 tsconfig.json
 postcss.config.js
 
+package-lock.json
+
 # build dir
 build/
 bin/
