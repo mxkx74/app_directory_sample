@@ -1,8 +1,8 @@
 const path = require('path');
 
-const buildEslintCommand = (filenames) =>
-  `next lint --file ${filenames.map((f) => path.relative(process.cwd(), f)).join(' --file ')}`;
+const srcDirEslintCommand = (filenames) =>
+  `next lint --file ${filenames.map((f) => path.relative(process.cwd(), f)).join(' --file ')} --dir src`;
 
 module.exports = {
-  '*.{ts,tsx}': [buildEslintCommand, 'prettier --write'],
+  '*.{ts,tsx}': [srcDirEslintCommand, 'prettier --write'],
 };
