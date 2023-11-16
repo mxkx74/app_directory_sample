@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "run-p dev:*",
+    "dev:next": "next dev",
+    "dev:css": "tcm --outDir generated --watch src",
     "build": "next build",
     "start": "next start",
     "lint": "run-p lint:*",
