@@ -1,12 +1,12 @@
 import Link from 'next/link';
-import style from './Header.module.scss';
+import styles from './Header.module.css';
 
 export const Header = () => {
   return (
-    <header className={style.wrapper}>
+    <header className={styles.wrapper}>
       <h1>Header</h1>
       <nav>
-        <ul className={style.nav}>
+        <ul className={styles.nav}>
           <li>
             <Link href="/page1">PAGE 1</Link>
           </li>
