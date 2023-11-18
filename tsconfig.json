@@ -21,7 +21,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "rootDirs": ["src", "generated"]
+    "rootDirs": [".", "generated"]
   },
   "include": ["*.config.js", "*.setup.js", "next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]

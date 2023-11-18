@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "run-p dev:*",
     "dev:next": "next dev",
-    "dev:css": "tcm --outDir generated --watch src",
+    "dev:css": "typed-scss-modules -o generated -L error -w src",
     "build": "next build",
     "start": "next start",
     "lint": "run-p lint:*",
@@ -78,7 +78,7 @@
     "stylelint-config-standard": "^34.0.0",
     "stylelint-config-standard-scss": "^11.1.0",
     "stylelint-prettier": "^4.0.2",
-    "typed-css-modules": "^0.8.1",
+    "typed-scss-modules": "^7.1.4",
     "typescript": "^5.2.2"
   },
   "msw": {
