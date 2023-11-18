@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "run-p dev:*",
     "dev:next": "next dev",
-    "dev:css": "tcm --outDir generated --watch src",
+    "dev:css": "typed-scss-modules -o generated -L error -w src",
     "build": "next build",
     "start": "next start",
     "lint": "run-p lint:*",
