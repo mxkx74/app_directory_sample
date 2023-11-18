@@ -1,6 +1,6 @@
 import { type ReactNode } from 'react';
 import { Footer, Header } from '@/component/ui-parts';
-import styles from './NoHeaderLayout.module.css';
+import styles from './NoHeaderLayout.module.scss';
 
 type Props = {
   children: ReactNode;
