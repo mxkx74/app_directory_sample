@@ -4,7 +4,9 @@ import styles from './Header.module.scss';
 export const Header = () => {
   return (
     <header className={styles.wrapper}>
-      <h1>Header</h1>
+      <h1>
+        <Link href="/">Header</Link>
+      </h1>
       <nav>
         <ul className={styles.nav}>
           <li>
