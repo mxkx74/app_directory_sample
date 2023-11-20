@@ -2,6 +2,8 @@
 build
 coverage
 yarn.lock
+package-lock.json
+package.json
 
 # dotfile
 .env*
@@ -18,3 +20,5 @@ yarn.lock
 
 # yarn
 /.yarn/
+
+/.vscode

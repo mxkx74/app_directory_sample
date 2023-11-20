@@ -13,3 +13,4 @@ bin/
 obj/
 out/
 .next/
+generated/
