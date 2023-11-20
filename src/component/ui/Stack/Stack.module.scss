@@ -1,0 +1,25 @@
+.base {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.sizeS {
+  gap: 0.5rem;
+}
+
+.sizeM {
+  gap: 1rem;
+}
+
+.sizeL {
+  gap: 2rem;
+}
+
+.directionRow {
+  flex-direction: row;
+}
+
+.directionColumn {
+  flex-direction: column;
+}
