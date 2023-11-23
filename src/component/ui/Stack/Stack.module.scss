@@ -2,13 +2,13 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: start;
-  justify-content: start;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 // align-items
 .alignStart {
-  align-items: start;
+  align-items: flex-start;
 }
 
 .alignEnd {
@@ -29,7 +29,7 @@
 
 // justify-content
 .justifyStart {
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .justifyEnd {
