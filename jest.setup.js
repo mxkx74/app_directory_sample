@@ -1,20 +1,19 @@
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import { cleanup } from '@testing-library/react';
-import { server } from './src/mock';
-
-jest.mock('next/router', () => require('next-router-mock'));
+// TODO: mswのapp router対応待ち
+// import { server } from './src/mock';
 
 beforeAll(() => {
-  server.listen();
+  // server.listen();
   global.IS_REACT_ACT_ENVIRONMENT = false;
 });
 
 afterEach(() => {
   jest.clearAllMocks();
-  server.resetHandlers();
+  // server.resetHandlers();
   cleanup();
 });
 
 afterAll(() => {
-  server.close();
+  // server.close();
 });

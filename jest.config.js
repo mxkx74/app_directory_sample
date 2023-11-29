@@ -1,4 +1,5 @@
-import nextJest from 'next/jest';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const nextJest = require('next/jest');
 
 const createJestConfig = nextJest({ dir: './' });
 
@@ -9,9 +10,6 @@ const customJestConfig = {
   moduleNameMapper: {
     '^@/(.*)': '<rootDir>/src/$1',
   },
-  globals: {
-    tsconfig: 'tsconfig.jest.json',
-  },
 };
 
-export default createJestConfig(customJestConfig);
+module.exports = createJestConfig(customJestConfig);
