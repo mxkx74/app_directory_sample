@@ -37,6 +37,7 @@
     "@typescript-eslint/no-extra-semi": "error",
     "@typescript-eslint/consistent-type-definitions": ["warn", "type"],
     "@typescript-eslint/strict-boolean-expressions": "warn",
+    "@typescript-eslint/return-await": "off",
 
     "import/order": [
       "error",
