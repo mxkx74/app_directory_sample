@@ -36,7 +36,7 @@
     "@typescript-eslint/prefer-interface": "off",
     "@typescript-eslint/no-extra-semi": "error",
     "@typescript-eslint/consistent-type-definitions": ["warn", "type"],
-    "@typescript-eslint/strict-boolean-expressions": "warn",
+    "@typescript-eslint/strict-boolean-expressions": "error",
     "@typescript-eslint/return-await": "off",
 
     "import/order": [
