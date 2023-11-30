@@ -13,15 +13,20 @@ export const refreshAccessToken = async ({
   account: Account | null;
 }): Promise<AuthModel> => {
   if (account != null) {
-    token.id = account.id;
-    token.expires_in = Date.now() + (account.expires_at as number) * 1000;
-    token.access_token = account.access_token;
-    token.refresh_token = account.refresh_token;
+    return {
+      expires_in: Date.now() + (account.expires_at as number) * 1000,
+      access_token: account.access_token,
+      refresh_token: account.refresh_token,
+    };
   }
-  if (token.expires_in == null || Date.now() < token.expires_in) {
+
+  if (Date.now() < (token.expires_in ?? 0)) {
     return token;
   }
-  return (await authRepository().refreshAccessToken(token.refresh_token)) ?? token;
+
+  const { payload, error } = await authRepository().refreshAccessToken(token.refresh_token);
+
+  return payload ?? { ...token, error: error?.message };
 };
 
 export const transformTokenToSession = async ({
