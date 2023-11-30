@@ -26,14 +26,14 @@ export const authRepository = () => {
         refresh_token: refreshToken ?? '',
       });
 
-      const { payload } = await fetcher<AuthModel>(endpoint, {
+      const { payload, error } = await fetcher<AuthModel>(endpoint, {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         method: 'POST',
         cache: 'no-store',
         body,
       });
 
-      return payload;
+      return { payload, error };
     },
   };
 };
