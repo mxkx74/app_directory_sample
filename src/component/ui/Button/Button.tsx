@@ -22,10 +22,15 @@ const buttonVariants = cva(
         lg: 'h-11 rounded-md px-8',
         icon: 'h-10 w-10',
       },
+      width: {
+        fit: 'w-fit',
+        full: 'w-full',
+      },
     },
     defaultVariants: {
       variant: 'default',
       size: 'default',
+      width: 'fit',
     },
   },
 );
