@@ -1,3 +1,4 @@
+import { type keyPath } from '@/constant/path';
 import { type HttpResponse } from '@/type/httpResponse';
 import { HttpError } from '@/util/error';
 
@@ -60,7 +61,7 @@ export const transformErrorResponse = async <T>(error: Error, isThrowError: bool
  */
 export const fetcher = async <T>(
   input: RequestInfo,
-  init?: RequestInit,
+  init?: RequestInit & { next?: { revalidate: number; tags?: keyPath[] } },
   isThrowError = false,
 ): Promise<HttpResponse<T>> => {
   return fetch(input, {
@@ -68,6 +69,9 @@ export const fetcher = async <T>(
     headers: {
       'Content-Type': 'application/json',
       ...init?.headers,
+    },
+    next: {
+      ...init?.next,
     },
   })
     .then(async (response) => await transformResponse<T>(response, isThrowError))
