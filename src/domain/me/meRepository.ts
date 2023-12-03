@@ -1,6 +1,5 @@
-// currentUserRepository.ts
 import { path } from '@/constant/path';
-import { meSchema, type Me } from '@/domain/me/meModel';
+import { type Me } from '@/domain/me/meModel';
 import { fetcher } from '@/lib/fetcher';
 
 export const meRepository = () => {
@@ -11,7 +10,7 @@ export const meRepository = () => {
       const { payload, error } = await fetcher<Me>(url);
 
       return {
-        payload: payload ?? meSchema.parse(payload),
+        payload,
         error,
       };
     },

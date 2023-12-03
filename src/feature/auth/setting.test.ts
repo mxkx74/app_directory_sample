@@ -4,7 +4,7 @@ import { authRepository } from '@/domain/auth/authRepository';
 import { type SessionModel } from '@/domain/auth/sessionModel';
 import { refreshAccessToken, transformTokenToSession } from '@/feature/auth/setting';
 
-jest.mock('@/domain/repository/authRepository', () => ({
+jest.mock('@/domain/auth/authRepository', () => ({
   authRepository: jest.fn().mockReturnValue({
     refreshAccessToken: jest.fn().mockResolvedValue({ payload: {} }),
   }),
