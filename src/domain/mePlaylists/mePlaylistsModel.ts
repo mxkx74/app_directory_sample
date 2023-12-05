@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-const mePlaylistSchema = z.object({
+export const mePlaylistModelSchema = z.object({
   items: z.array(
     z.object({
       collaborative: z.boolean(),
@@ -49,4 +49,4 @@ const mePlaylistSchema = z.object({
   total: z.number(),
 });
 
-export type MePlaylist = z.infer<typeof mePlaylistSchema>;
+export type MePlaylistModel = z.infer<typeof mePlaylistModelSchema>;

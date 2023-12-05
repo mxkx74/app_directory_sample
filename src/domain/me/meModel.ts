@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const meSchema = z.object({
+export const meModelSchema = z.object({
   country: z.string().optional(),
   display_name: z.string().optional(),
   email: z.string().email().optional(),
@@ -37,4 +37,4 @@ export const meSchema = z.object({
   uri: z.string().url().optional(),
 });
 
-export type Me = z.infer<typeof meSchema>;
+export type MeModel = z.infer<typeof meModelSchema>;
