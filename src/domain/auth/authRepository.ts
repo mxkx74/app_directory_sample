@@ -1,10 +1,10 @@
 import { signIn, signOut } from 'next-auth/react';
 import { path } from '@/constant/path';
-import { type AuthModel } from '@/domain/model/authModel';
+import { type AuthModel } from '@/domain/auth/authModel';
 import { fetcher } from '@/lib/fetcher';
 
 export const authRepository = () => {
-  const endpoint = path.auth.token();
+  const endpoint = path.auth.token;
 
   return {
     // ユーザーがログインした後、callbackUrlにリダイレクトされます。

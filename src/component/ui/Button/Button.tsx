@@ -26,11 +26,16 @@ const buttonVariants = cva(
         fit: 'w-fit',
         full: 'w-full',
       },
+      round: {
+        default: 'rounded-md',
+        none: 'rounded-none',
+      },
     },
     defaultVariants: {
       variant: 'default',
       size: 'default',
       width: 'fit',
+      round: 'default',
     },
   },
 );
@@ -41,9 +46,9 @@ export type ButtonProps = {
   VariantProps<typeof buttonVariants>;
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  ({ className, variant, size, width, round, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : 'button';
-    return <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props} />;
+    return <Comp className={cn(buttonVariants({ variant, size, width, round, className }))} ref={ref} {...props} />;
   },
 );
 Button.displayName = 'Button';

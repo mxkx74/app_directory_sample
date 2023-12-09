@@ -1,10 +1,10 @@
 import { type Account } from 'next-auth';
-import { type AuthModel } from '@/domain/model/authModel';
-import { type SessionModel } from '@/domain/model/sessionModel';
-import { authRepository } from '@/domain/repository/authRepository';
+import { type AuthModel } from '@/domain/auth/authModel';
+import { authRepository } from '@/domain/auth/authRepository';
+import { type SessionModel } from '@/domain/auth/sessionModel';
 import { refreshAccessToken, transformTokenToSession } from '@/feature/auth/setting';
 
-jest.mock('@/domain/repository/authRepository', () => ({
+jest.mock('@/domain/auth/authRepository', () => ({
   authRepository: jest.fn().mockReturnValue({
     refreshAccessToken: jest.fn().mockResolvedValue({ payload: {} }),
   }),

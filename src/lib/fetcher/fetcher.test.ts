@@ -1,4 +1,5 @@
-import { transformErrorResponse, transformResponse } from '@/lib/fetcher/fetcher';
+import { ZodError } from 'zod';
+import { transformErrorResponse, transformResponse, transformValidation } from '@/lib/fetcher/fetcher';
 import { HttpError } from '@/util/error';
 
 type ResponseType = {
@@ -6,6 +7,29 @@ type ResponseType = {
 };
 
 describe('fetcher', () => {
+  describe('transformValidation', () => {
+    it('validationErrorがZodErrorのインスタンスの場合、HttpResponseに変換された値を返すこと', async () => {
+      const validationError = new ZodError([]);
+      const result = await transformValidation<ResponseType>(validationError, false);
+
+      expect(result).toEqual({
+        payload: undefined,
+        error: validationError,
+        status: 400,
+      });
+    });
+
+    it('isThrowErrorがtrueの場合、HttpErrorをthrowすること', async () => {
+      const validationError = new ZodError([]);
+      await expect(transformValidation(validationError, true)).rejects.toThrow(HttpError);
+    });
+
+    it('validationErrorがZodErrorのインスタンスでない場合、validationErrorをthrowすること', async () => {
+      const validationError = new Error('Some error');
+      await expect(transformValidation(validationError, false)).rejects.toThrow(validationError);
+    });
+  });
+
   describe('transformResponse', () => {
     describe('正常系', () => {
       let mockResponse: Response;

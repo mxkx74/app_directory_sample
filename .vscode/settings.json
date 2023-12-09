@@ -21,5 +21,9 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "css.validate": false,
   "scss.validate": false,
-  "stylelint.validate": ["css", "scss"]
+  "stylelint.validate": ["css", "scss"],
+  // tailwindの補完
+  "editor.quickSuggestions": {
+    "strings": true
+  }
 }

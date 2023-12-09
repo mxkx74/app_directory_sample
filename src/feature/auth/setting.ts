@@ -1,9 +1,9 @@
 import { type Account, type NextAuthOptions } from 'next-auth';
 import { type JWT } from 'next-auth/jwt';
 import SpotifyProvider from 'next-auth/providers/spotify';
-import { type AuthModel } from '@/domain/model/authModel';
-import { type SessionModel } from '@/domain/model/sessionModel';
-import { authRepository } from '@/domain/repository/authRepository';
+import { type AuthModel } from '@/domain/auth/authModel';
+import { authRepository } from '@/domain/auth/authRepository';
+import { type SessionModel } from '@/domain/auth/sessionModel';
 
 export const refreshAccessToken = async ({
   token,
@@ -45,6 +45,7 @@ export const transformTokenToSession = async ({
       email: token.email,
       picture: token.picture,
     },
+    access_token: token.access_token,
   };
 };
 

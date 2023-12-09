@@ -1,4 +1,4 @@
-import { authRepository } from '@/domain/repository/authRepository';
+import { authRepository } from '@/domain/auth/authRepository';
 
 const repository = authRepository();
 
