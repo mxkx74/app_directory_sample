@@ -2,12 +2,12 @@ import { path } from '@/constant/path';
 import { meModelSchema, type MeModel } from '@/domain/me/meModel';
 import { fetcher } from '@/lib/fetcher';
 
-export const meRepository = () => {
+export const meRepository = (token: string) => {
   const url = path.user.me;
 
   return {
     async find(isThrowError = false) {
-      return fetcher<MeModel>(url, undefined, meModelSchema, isThrowError);
+      return fetcher<MeModel>(url, undefined, { validationSchema: meModelSchema, isThrowError, token });
     },
   };
 };

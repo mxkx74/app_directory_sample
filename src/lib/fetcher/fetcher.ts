@@ -101,20 +101,24 @@ export const transformErrorResponse = async <T>(error: Error, isThrowError: bool
 export const fetcher = async <T>(
   input: RequestInfo,
   init?: RequestInit & { next?: { revalidate: number; tags?: keyPath[] } },
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  validationSchema?: ZodObject<any>,
-  isThrowError = false,
+  options?: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    validationSchema?: ZodObject<any>;
+    token?: string;
+    isThrowError?: boolean;
+  },
 ): Promise<HttpResponse<T>> => {
   return fetch(input, {
     ...init,
     headers: {
       'Content-Type': 'application/json',
       ...init?.headers,
+      ...(options?.token && { Authorization: `Bearer ${options.token}` }),
     },
     next: {
       ...init?.next,
     },
   })
-    .then(async (response) => await transformResponse<T>(response, isThrowError, validationSchema))
-    .catch(async (error: Error) => await transformErrorResponse<T>(error, isThrowError));
+    .then(async (response) => await transformResponse<T>(response, !!options?.isThrowError, options?.validationSchema))
+    .catch(async (error: Error) => await transformErrorResponse<T>(error, !!options?.isThrowError));
 };
