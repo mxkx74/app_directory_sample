@@ -1,4 +1,5 @@
 import { type Account } from 'next-auth';
+import { type AuthModel } from '@/domain/model/authModel';
 import { type SessionModel } from '@/domain/model/sessionModel';
 import { authRepository } from '@/domain/repository/authRepository';
 import { refreshAccessToken, transformTokenToSession } from '@/feature/auth/setting';
@@ -14,12 +15,16 @@ const mockDateNow = new Date(2022, 1, 1).getTime(); // 2022年2月1日のUNIXタ
 jest.setSystemTime(mockDateNow);
 
 describe('refreshAccessToken', () => {
+  const token: AuthModel = {
+    name: 'test-name',
+    email: 'test-email',
+    picture: 'test-picture',
+    expires_in: Date.now() + 3600 * 1000,
+    access_token: 'test-access-token',
+    refresh_token: 'test-refresh-token',
+  };
+
   it('アカウントがnullの場合、トークンは変更されずに返されること', async () => {
-    const token = {
-      expires_in: Date.now() + 3600 * 1000,
-      access_token: 'test-access-token',
-      refresh_token: 'test-refresh-token',
-    };
     const account = null;
 
     const result = await refreshAccessToken({ token, account });
@@ -28,12 +33,6 @@ describe('refreshAccessToken', () => {
   });
 
   it('アカウントが存在する場合、アカウントの値がtokeに使われること', async () => {
-    const token = {
-      expires_in: Date.now() + 3600 * 1000,
-      access_token: 'test-access-token',
-      refresh_token: 'test-refresh-token',
-    };
-
     const account: Account = {
       expires_at: Date.now() + 3600 * 1000,
       access_token: 'account-access-token',
@@ -50,25 +49,20 @@ describe('refreshAccessToken', () => {
   });
 
   it('トークンの有効期限が現在時刻よりも後の場合、トークンは変更されずに返されること', async () => {
-    const token = {
-      expires_in: Date.now() + 3600 * 1000,
-      access_token: 'test-access-token',
-      refresh_token: 'test-refresh-token',
-    };
-
     const result = await refreshAccessToken({ token, account: null });
 
     expect(result).toEqual(token);
   });
 
   it('トークンの有効期限が現在時刻よりも前の場合、refreshAccessTokenがコールされること', async () => {
-    const token = {
+    const newToken = {
+      ...token,
       expires_in: Date.now() - 3600 * 1000,
       access_token: 'test-access-token',
       refresh_token: 'test-refresh-token',
     };
 
-    await refreshAccessToken({ token, account: null });
+    await refreshAccessToken({ token: newToken, account: null });
 
     expect(authRepository().refreshAccessToken).toHaveBeenCalled();
   });
