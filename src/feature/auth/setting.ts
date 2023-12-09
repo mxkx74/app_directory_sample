@@ -14,6 +14,7 @@ export const refreshAccessToken = async ({
 }): Promise<AuthModel> => {
   if (account != null) {
     return {
+      ...token,
       expires_in: Date.now() + (account.expires_at as number) * 1000,
       access_token: account.access_token,
       refresh_token: account.refresh_token,
