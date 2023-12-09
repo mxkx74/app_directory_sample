@@ -45,6 +45,7 @@ export const transformTokenToSession = async ({
       email: token.email,
       picture: token.picture,
     },
+    access_token: token.access_token,
   };
 };
 
