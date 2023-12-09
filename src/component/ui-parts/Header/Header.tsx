@@ -1,4 +1,6 @@
+import { Suspense } from 'react';
 import Link from 'next/link';
+import { MeNavigation } from '@/feature/me/component/MeNavigation';
 import styles from './Header.module.scss';
 
 export const Header = () => {
@@ -8,17 +10,9 @@ export const Header = () => {
         <Link href="/">Header</Link>
       </h1>
       <nav>
-        <ul className={styles.nav}>
-          <li>
-            <Link href="/page1">PAGE 1</Link>
-          </li>
-          <li>
-            <Link href="/page2">PAGE 2</Link>
-          </li>
-          <li>
-            <Link href="/page3">PAGE 3</Link>
-          </li>
-        </ul>
+        <Suspense fallback={<>loading</>}>
+          <MeNavigation />
+        </Suspense>
       </nav>
     </header>
   );
