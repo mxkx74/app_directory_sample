@@ -1,5 +1,5 @@
 import { ZodError } from 'zod';
-import { transformErrorResponse, transformResponse, transformValidation } from '@/lib/fetcher/fetcher';
+import { fetcher, transformErrorResponse, transformResponse, transformValidation } from '@/lib/fetcher/fetcher';
 import { HttpError } from '@/util/error';
 
 type ResponseType = {
@@ -68,8 +68,19 @@ describe('fetcher', () => {
         } as unknown as Response;
       });
 
-      it('isThrowErrorがtrueの場合、HttpErrorをthrowすること', async () => {
-        await expect(transformResponse(mockErrorResponse, true)).rejects.toThrow(HttpError);
+      it('isThrowErrorがtrueの場合、HttpResponseをthrowすること', async () => {
+        let err;
+        try {
+          await transformResponse(mockErrorResponse, true);
+        } catch (error) {
+          err = error;
+        } finally {
+          expect(err).toMatchObject({
+            error: { message: 'Error' },
+            payload: undefined,
+            status: 404,
+          });
+        }
       });
 
       it('isThrowErrorがfalseの場合、HttpResponseに変換された値を返すこと', async () => {
@@ -84,8 +95,12 @@ describe('fetcher', () => {
 
   describe('transformErrorResponse', () => {
     describe('httpエラー', () => {
-      it('errorがHttpErrorのインスタンスの場合、isThrowErrorがfalseでもHttpErrorをスローすること', async () => {
-        const error = new HttpError({ payload: undefined, error: new Error('Some error'), status: 500 });
+      it('errorがHttpResponseの場合、isThrowErrorがfalseでもHttpErrorをスローすること', async () => {
+        const error = {
+          error: { message: 'Error' },
+          payload: undefined,
+          status: 404,
+        };
         await expect(transformErrorResponse(error, false)).rejects.toThrow(HttpError);
       });
     });
@@ -105,6 +120,46 @@ describe('fetcher', () => {
         const throwError = new HttpError({ payload: undefined, error, status: -1 });
         await expect(transformErrorResponse(error, true)).rejects.toThrow(throwError);
       });
+    });
+  });
+
+  describe('fetcher', () => {
+    it('httpResponseをreturnする', async () => {
+      const mockResponse: Response = {
+        json: jest.fn().mockResolvedValue({ message: 'Success' }),
+        status: 200,
+        ok: true,
+      } as unknown as Response;
+
+      global.fetch = jest.fn().mockResolvedValue(mockResponse);
+
+      const result = await fetcher<ResponseType>('https://hoge', { method: 'GET' });
+
+      expect(result).toEqual({
+        payload: { message: 'Success' },
+        error: undefined,
+        status: 200,
+      });
+    });
+
+    it('isThrowErrorがtrueのとき、HttpErrorをthrowする', async () => {
+      const mockErrorResponse: Response = {
+        json: jest.fn().mockResolvedValue({ name: 'HttpError', message: 'Error' }),
+        status: 404,
+        ok: false,
+      } as unknown as Response;
+
+      global.fetch = jest.fn().mockResolvedValue(mockErrorResponse);
+
+      const throwError = new HttpError({
+        payload: undefined,
+        error: { name: 'HttpError', message: 'Error' },
+        status: 404,
+      });
+
+      await expect(fetcher<ResponseType>('https://hoge', { method: 'GET' }, { isThrowError: true })).rejects.toThrow(
+        throwError,
+      );
     });
   });
 });

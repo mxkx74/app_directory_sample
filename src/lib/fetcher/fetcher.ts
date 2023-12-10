@@ -27,9 +27,10 @@ export const transformValidation = async <T>(validationError: unknown, isThrowEr
 };
 
 /**
- * @description fetcherのレスポンスをHttpResponseに変換する
- * @param {Response} response - fetchレスポンス
- * @param {boolean} isThrowError - 200 ~ 299以外のステータスコードの場合にエラーをthrowするかどうか
+ * @description fetchのレスポンスをHttpResponseに変換する
+ * @param {Response} response - fetchのレスポンス
+ * @param {boolean} isThrowError - エラーをthrowするかどうか
+ * @param {ZodObject} validationSchema - バリデーションスキーマ
  * @returns {Promise<HttpResponse<T>>} - HttpResponse
  * @throws {HttpError} - isThrowErrorがtrueの場合、HttpErrorをthrowする
  */
@@ -56,10 +57,8 @@ export const transformResponse = async <T>(
       error: json,
       status: response.status,
     };
-
-    if (isThrowError) {
-      throw new HttpError(data);
-    }
+    // eslint-disable-next-line @typescript-eslint/no-throw-literal
+    if (isThrowError) throw data;
 
     return data;
   }
@@ -77,8 +76,8 @@ export const transformResponse = async <T>(
  * @param {boolean} isThrowError - エラーをthrowするかどうか
  * @returns {Promise<HttpResponse<T>>} - HttpResponse
  */
-export const transformErrorResponse = async <T>(error: Error, isThrowError: boolean): Promise<HttpResponse<T>> => {
-  if (!(error instanceof HttpError)) {
+export const transformErrorResponse = async <T>(error: unknown, isThrowError: boolean): Promise<HttpResponse<T>> => {
+  if (error instanceof Error) {
     const data: HttpResponse<T> = {
       payload: undefined,
       error,
@@ -87,7 +86,8 @@ export const transformErrorResponse = async <T>(error: Error, isThrowError: bool
     if (isThrowError) throw new HttpError(data);
     return data;
   }
-  throw error;
+
+  throw new HttpError(error as HttpResponse<T>);
 };
 
 /**
@@ -108,17 +108,18 @@ export const fetcher = async <T>(
     isThrowError?: boolean;
   },
 ): Promise<HttpResponse<T>> => {
+  const { isThrowError = false, token, validationSchema } = options ?? {};
   return fetch(input, {
     ...init,
     headers: {
       'Content-Type': 'application/json',
       ...init?.headers,
-      ...(options?.token && { Authorization: `Bearer ${options.token}` }),
+      ...(token && { Authorization: `Bearer ${token}` }),
     },
     next: {
       ...init?.next,
     },
   })
-    .then(async (response) => await transformResponse<T>(response, !!options?.isThrowError, options?.validationSchema))
-    .catch(async (error: Error) => await transformErrorResponse<T>(error, !!options?.isThrowError));
+    .then(async (response) => await transformResponse<T>(response, isThrowError, validationSchema))
+    .catch(async (error: unknown) => transformErrorResponse<T>(error, isThrowError));
 };
