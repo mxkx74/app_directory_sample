@@ -1,6 +1,6 @@
 import { signIn, signOut } from 'next-auth/react';
 import { path } from '@/constant/path';
-import { type AuthModel } from '@/domain/auth/authModel';
+import { authModelSchema, type AuthModel } from '@/domain/auth/authModel';
 import { fetcher } from '@/lib/fetcher';
 
 export const authRepository = () => {
@@ -26,14 +26,18 @@ export const authRepository = () => {
         refresh_token: refreshToken ?? '',
       });
 
-      const { payload, error } = await fetcher<AuthModel>(endpoint, {
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        method: 'POST',
-        cache: 'no-store',
-        body,
-      });
-
-      return { payload, error };
+      return fetcher<AuthModel>(
+        endpoint,
+        {
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          method: 'POST',
+          cache: 'no-store',
+          body,
+        },
+        {
+          validationSchema: authModelSchema,
+        },
+      );
     },
   };
 };
