@@ -41,3 +41,5 @@ export const authRepository = () => {
     },
   };
 };
+
+export type AuthRepository = ReturnType<typeof authRepository>;

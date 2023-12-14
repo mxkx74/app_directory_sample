@@ -13,3 +13,5 @@ export const mePlaylistRepository = () => {
     },
   };
 };
+
+export type MePlaylistRepository = ReturnType<typeof mePlaylistRepository>;
