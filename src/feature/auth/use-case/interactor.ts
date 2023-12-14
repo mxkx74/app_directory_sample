@@ -1,23 +1,20 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { type AuthModel } from '@/domain/auth/authModel';
-import { authRepository } from '@/domain/auth/authRepository';
+import { type AuthRepository } from '@/domain/auth/authRepository';
 import { authViewModelSchema } from './boundary';
 
-const repository = authRepository();
-
-export const authInteractor = () => {
+export const authInteractor = (authRepository: AuthRepository) => {
   return {
     login() {
       // ログイン処理
-      repository.signIn();
+      authRepository.signIn();
     },
     logout() {
       // ログアウト処理
-      repository.signOut();
+      authRepository.signOut();
     },
     async refreshToken(token?: AuthModel) {
       // トークンをリフレッシュする
-      const { payload, error, status } = await repository.refreshAccessToken(token?.refresh_token);
+      const { payload, error, status } = await authRepository.refreshAccessToken(token?.refresh_token);
       const result = {
         ...token,
         ...payload,

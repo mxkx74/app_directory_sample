@@ -1,15 +1,12 @@
-import { meRepository } from '@/domain/me/meRepository';
-import { mePlaylistRepository } from '@/domain/mePlaylists/mePlaylistsRepository';
+import { type MeRepository } from '@/domain/me/meRepository';
+import { type MePlaylistRepository } from '@/domain/mePlaylists/mePlaylistsRepository';
 import { type HttpResponse } from '@/type/httpResponse';
 import { type MeViewModel, meViewModelSchema, type MePlaylistViewModel, mePlaylistViewModelSchema } from './boundary';
 
-export const meInteractor = (token: string) => {
-  const meRepo = meRepository(token);
-  const mePlaylistRepo = mePlaylistRepository();
-
+export const meInteractor = (meRepository: MeRepository, mePlaylistRepository: MePlaylistRepository) => {
   return {
-    async findMe(): Promise<HttpResponse<MeViewModel>> {
-      const { payload, error, status } = await meRepo.find();
+    async findMe(token: string): Promise<HttpResponse<MeViewModel>> {
+      const { payload, error, status } = await meRepository.find(token);
 
       return {
         ...(payload && { payload: meViewModelSchema.parse(payload) }),
@@ -19,7 +16,7 @@ export const meInteractor = (token: string) => {
     },
 
     async findPlaylist(): Promise<HttpResponse<MePlaylistViewModel>> {
-      const { payload, error, status } = await mePlaylistRepo.find();
+      const { payload, error, status } = await mePlaylistRepository.find();
 
       return {
         ...(payload && { payload: mePlaylistViewModelSchema.parse(payload) }),

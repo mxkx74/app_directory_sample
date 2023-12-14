@@ -3,7 +3,7 @@ import { type JWT } from 'next-auth/jwt';
 import SpotifyProvider from 'next-auth/providers/spotify';
 import { type AuthModel } from '@/domain/auth/authModel';
 import { type SessionModel } from '@/domain/auth/sessionModel';
-import { authInteractor } from './use-case/interactor';
+import { authInteractor } from './use-case';
 
 export const refreshAccessToken = async ({
   token,
@@ -25,7 +25,7 @@ export const refreshAccessToken = async ({
     return token;
   }
 
-  const { payload, error } = await authInteractor().refreshToken(token);
+  const { payload, error } = await authInteractor.refreshToken(token);
 
   if (error != null) throw error;
 
