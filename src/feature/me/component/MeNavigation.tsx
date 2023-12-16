@@ -24,18 +24,18 @@ export const MeNavigationPresentation = (props: PresentationProps) => {
 
   return (
     <Stack direction="row" space="S">
-      <Button size="sm" className="rounded-3xl text-xs h-8 bg-white text-black hover:scale-105 hover:bg-white">
+      <Button size="sm" round="lg" className="text-xs h-8 bg-white text-black hover:scale-105 hover:bg-white">
         Premiumをチェックする
       </Button>
-      <Button size="sm" className="rounded-3xl text-xs h-8 hover:scale-105">
+      <Button size="sm" round="lg" className="text-xs h-8 hover:scale-105">
         <ArrowDownIcon className="h4 w-4" /> アプリをインストール
       </Button>
-      <Button variant="default" size="icon" className="w-8 h-8 rounded-full hover:scale-105">
-        <BellIcon />
+      <Button variant="default" size="icon" round="full" className="w-8 h-8 hover:scale-105 dark:bg-black">
+        <BellIcon color="white" />
       </Button>
       <Popover>
         <PopoverTrigger asChild>
-          <Button size="icon" className="w-8 h-8 rounded-full hover:scale-105">
+          <Button size="icon" round="full" className="w-8 h-8 hover:scale-105 dark:bg-black">
             <Avatar size="sm">
               <AvatarImage alt={props.display_name} src={avatarImage.url} />
               <AvatarFallback>{props.display_name}</AvatarFallback>

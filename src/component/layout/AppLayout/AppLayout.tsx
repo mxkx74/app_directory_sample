@@ -11,7 +11,7 @@ type Props = {
 export const AppLayout = ({ children }: Props) => {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`dark ${inter.className}`}>
         <NextAuthProvider>{children}</NextAuthProvider>
       </body>
     </html>

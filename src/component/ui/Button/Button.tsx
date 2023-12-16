@@ -27,7 +27,9 @@ const buttonVariants = cva(
         full: 'w-full',
       },
       round: {
-        default: 'rounded-md',
+        md: 'rounded-md',
+        lg: 'rounded-3xl',
+        full: 'rounded-full',
         none: 'rounded-none',
       },
     },
@@ -35,7 +37,7 @@ const buttonVariants = cva(
       variant: 'default',
       size: 'default',
       width: 'fit',
-      round: 'default',
+      round: 'md',
     },
   },
 );

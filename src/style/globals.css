@@ -37,7 +37,7 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 0 0% 0%;
     --foreground: 210 40% 98%;
 
     --card: 222.2 84% 4.9%;
@@ -73,5 +73,40 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer primitives {
+  :root {
+    --color-black-100: 0, 0%, 0%;
+    --color-black-200: #121212;
+    --color-black-300: #1a1a1a;
+    --color-black-400: #2a2a2a;
+    --color-black-500: #6a6a6a;
+
+    --color-white-100: #ffffff;
+    --color-white-200: #b3b3b3;
+
+    --color-green-100: #12833a;
+    --color-green-200: #169c46;
+    --color-green-300: #17a449;
+    --color-green-400: #1ed760;
+
+    --space-100: 0.25rem;
+    --space-200: 0.5rem;
+    --space-300: 0.75rem;
+    --space-400: 1rem;
+    --space-500: 1.5rem;
+    --space-600: 2rem;
+  }
+}
+
+@layer sematic {
+  :root {
+    --text-body-color: var(--color-black-200);
+  }
+
+  .dark {
+    --text-body-color: var(--color-black-500);
   }
 }
