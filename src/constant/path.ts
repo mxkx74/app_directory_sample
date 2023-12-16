@@ -10,8 +10,9 @@ export const path = {
   },
   user: {
     me: `${baseEndpoint}/me`,
-    users: `${baseEndpoint}/users`,
     mePlaylists: `${baseEndpoint}/me/playlists`,
+    meAlbums: `${baseEndpoint}/me/albums`,
+    users: `${baseEndpoint}/users`,
   },
 } as const;
 
