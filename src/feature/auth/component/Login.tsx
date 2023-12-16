@@ -2,7 +2,7 @@ import { type ComponentPropsWithRef } from 'react';
 import { type VariantProps, cva } from 'class-variance-authority';
 import Image from 'next/image';
 import { Button, Card, CardContent, Stack } from '@/component/ui';
-import { authInteractor } from '@/feature/auth/useCase';
+import { authInteractor } from '@/feature/auth/use-case';
 import { cn } from '@/lib';
 
 const loginVariants = cva(undefined, {
@@ -25,14 +25,12 @@ const loginVariants = cva(undefined, {
 type Props = VariantProps<typeof loginVariants> & ComponentPropsWithRef<'div'>;
 
 export const LoginCard = ({ variant, width, className, ...props }: Props) => {
-  const interactor = authInteractor();
-
   const handleLogin = () => {
-    interactor.login();
+    authInteractor.login();
   };
 
   const handleLogout = () => {
-    interactor.logout();
+    authInteractor.logout();
   };
 
   return (

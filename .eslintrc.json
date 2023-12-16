@@ -88,7 +88,7 @@
         "import/no-internal-modules": [
           "error",
           {
-            "forbid": ["@/component/**/*"]
+            "forbid": ["@/component/**/*", "@/feature/**/use-case/*"]
           }
         ]
       }

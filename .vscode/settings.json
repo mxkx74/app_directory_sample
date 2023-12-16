@@ -1,7 +1,7 @@
 {
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.fixAll.stylelint": true
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit"
   },
   "eslint.workingDirectories": [{ "mode": "auto" }], // .eslintrc*を見てESLintの適用を自動で行う
   "eslint.format.enable": false,

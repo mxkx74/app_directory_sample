@@ -13,8 +13,8 @@ import {
   PopoverTrigger,
 } from '@/component/ui';
 import { authOptions } from '@/feature/auth/setting';
-import { type MeViewModel } from '@/feature/me/use-case/boundary';
-import { meInteractor } from '@/feature/me/use-case/interactor';
+import { type MeViewModel } from '@/feature/me/use-case';
+import { meInteractor } from '@/feature/me/use-case/';
 
 type PresentationProps = ComponentPropsWithRef<'div'> & MeViewModel;
 
@@ -86,8 +86,7 @@ export const MeNavigation = async () => {
 
   if (!session?.access_token) return null;
 
-  const interactor = meInteractor(session.access_token);
+  const { payload } = await meInteractor.findMe(session.access_token);
 
-  const { payload } = await interactor.findMe();
   return payload && <MeNavigationPresentation {...payload} />;
 };

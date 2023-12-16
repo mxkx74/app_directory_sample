@@ -2,8 +2,8 @@ import { type Account, type NextAuthOptions } from 'next-auth';
 import { type JWT } from 'next-auth/jwt';
 import SpotifyProvider from 'next-auth/providers/spotify';
 import { type AuthModel } from '@/domain/auth/authModel';
-import { authRepository } from '@/domain/auth/authRepository';
 import { type SessionModel } from '@/domain/auth/sessionModel';
+import { authInteractor } from './use-case';
 
 export const refreshAccessToken = async ({
   token,
@@ -25,9 +25,11 @@ export const refreshAccessToken = async ({
     return token;
   }
 
-  const { payload, error } = await authRepository().refreshAccessToken(token.refresh_token);
+  const { payload, error } = await authInteractor.refreshToken(token);
 
-  return payload ?? { ...token, error: error?.message };
+  if (error != null) throw error;
+
+  return payload ?? token;
 };
 
 export const transformTokenToSession = async ({
