@@ -1,5 +1,6 @@
 import { type AuthModel } from '@/domain/auth/authModel';
 import { type AuthRepository } from '@/domain/auth/authRepository';
+import { type HttpResponse } from '@/type/httpResponse';
 import { authViewModelSchema } from './boundary';
 
 export const authInteractor = (authRepository: AuthRepository) => {
@@ -12,7 +13,7 @@ export const authInteractor = (authRepository: AuthRepository) => {
       // ログアウト処理
       authRepository.signOut();
     },
-    async refreshToken(token?: AuthModel) {
+    async refreshToken(token?: AuthModel): Promise<HttpResponse<AuthModel>> {
       // トークンをリフレッシュする
       const { payload, error, status } = await authRepository.refreshAccessToken(token?.refresh_token);
       const result = {
