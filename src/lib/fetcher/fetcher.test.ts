@@ -62,7 +62,7 @@ describe('fetcher', () => {
 
       beforeAll(() => {
         mockErrorResponse = {
-          json: jest.fn().mockResolvedValue({ message: 'Error' }),
+          json: jest.fn().mockResolvedValue({ error: { message: 'Error' } }),
           status: 404,
           ok: false,
         } as unknown as Response;
@@ -144,7 +144,7 @@ describe('fetcher', () => {
 
     it('isThrowErrorがtrueのとき、HttpErrorをthrowする', async () => {
       const mockErrorResponse: Response = {
-        json: jest.fn().mockResolvedValue({ name: 'HttpError', message: 'Error' }),
+        json: jest.fn().mockResolvedValue({ error: { name: 'HttpError', message: 'Error' } }),
         status: 404,
         ok: false,
       } as unknown as Response;
