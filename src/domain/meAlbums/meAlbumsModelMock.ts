@@ -1,6 +1,6 @@
 import { type MeAlbumsModel } from './meAlbumsModel';
 
-export const mockData = {
+export const meAlbumsModelMock = {
   href: 'https://example.com',
   limit: 10,
   next: 'https://example.com/next',
