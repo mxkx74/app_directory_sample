@@ -38,6 +38,13 @@
     "@typescript-eslint/consistent-type-definitions": ["warn", "type"],
     "@typescript-eslint/strict-boolean-expressions": "off",
     "@typescript-eslint/return-await": "off",
+    "@typescript-eslint/array-type": [
+      "error",
+      {
+        "default": "array",
+        "readonly": "array"
+      }
+    ],
 
     "import/order": [
       "error",
