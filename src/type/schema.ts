@@ -21,7 +21,8 @@ export declare type toZod<T> = isAny<T> extends true
           ? T extends null
             ? never
             : z.ZodNullable<toZod<T>>
-          : T extends Array<infer U>
+          : // eslint-disable-next-line @typescript-eslint/array-type
+            T extends Array<infer U>
             ? z.ZodArray<toZod<U>>
             : T extends Promise<infer U>
               ? z.ZodPromise<toZod<U>>

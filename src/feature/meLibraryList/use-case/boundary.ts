@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { type z } from 'zod';
 import { type MeAlbumsModel, meAlbumsModelSchema } from '@/domain/meAlbums/meAlbumsModel';
 import { type MePlaylistModel, mePlaylistModelSchema } from '@/domain/mePlaylists/mePlaylistsModel';
@@ -9,7 +8,7 @@ const meAlbumsModelListSchema = meAlbumsModelSchema.transform((data) => ({
   items: data.items.map((item) => {
     const album = item.album;
     return {
-      type: 'album',
+      type: 'album' as const,
       id: album?.id,
       name: album?.name,
       images: album?.images,
@@ -22,15 +21,21 @@ const mePlaylistModelListSchema = mePlaylistModelSchema.transform((data) => ({
   previousPlayList: data.previous,
   items: data.items.map((item) => {
     return {
-      type: 'playlist',
+      type: 'playlist' as const,
       id: item.id,
       name: item.name,
       images: item.images,
+      owner: item.owner,
     };
   }),
 }));
 
-export type MeLibraryViewModel = z.output<typeof meAlbumsModelListSchema> & z.output<typeof mePlaylistModelListSchema>;
+type meAlbumsModel = z.output<typeof meAlbumsModelListSchema>;
+type mePlaylistModel = z.output<typeof mePlaylistModelListSchema>;
+
+export type MeLibraryViewModel = Omit<meAlbumsModel & mePlaylistModel, 'items'> & {
+  items: (meAlbumsModel['items'][number] | mePlaylistModel['items'][number])[];
+};
 
 export const translateMeLibraryViewModel = (
   albumData?: MeAlbumsModel,
