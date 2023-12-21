@@ -6,13 +6,19 @@ import styles from './Stack.module.scss';
 const stackVariants = cva(styles.base, {
   variants: {
     space: {
-      S: styles.sizeS,
-      M: styles.sizeM,
-      L: styles.sizeL,
+      none: styles.none,
+      S: styles.spaceS,
+      M: styles.spaceM,
+      L: styles.spaceL,
     },
     direction: {
       column: styles.directionColumn,
       row: styles.directionRow,
+    },
+    padding: {
+      S: styles.paddingS,
+      M: styles.paddingM,
+      L: styles.paddingL,
     },
   },
   defaultVariants: {

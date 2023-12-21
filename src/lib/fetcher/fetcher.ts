@@ -42,25 +42,25 @@ export const transformResponse = async <T>(
 ): Promise<HttpResponse<T>> => {
   const json = await response.json();
 
-  if (validationSchema != null) {
-    try {
-      validationSchema.parse(json);
-    } catch (error) {
-      return transformValidation(error, isThrowError);
-    }
-  }
-
   // isThrowErrorがtrueで200 ~ 299以外のステータスコードの場合はcatchで処理する
   if (!response.ok) {
     const data: HttpResponse<T> = {
       payload: undefined,
-      error: json,
+      error: { ...json.error, status: response.status },
       status: response.status,
     };
     // eslint-disable-next-line @typescript-eslint/no-throw-literal
     if (isThrowError) throw data;
 
     return data;
+  }
+
+  if (validationSchema != null) {
+    try {
+      validationSchema.parse(json);
+    } catch (error) {
+      return transformValidation(error, isThrowError);
+    }
   }
 
   return {
@@ -120,6 +120,6 @@ export const fetcher = async <T>(
       ...init?.next,
     },
   })
-    .then(async (response) => await transformResponse<T>(response, isThrowError, validationSchema))
+    .then(async (response) => transformResponse<T>(response, isThrowError, validationSchema))
     .catch(async (error: unknown) => transformErrorResponse<T>(error, isThrowError));
 };

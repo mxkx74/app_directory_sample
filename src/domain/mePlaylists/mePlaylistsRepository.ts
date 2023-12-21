@@ -7,9 +7,9 @@ export const mePlaylistRepository = () => {
   const endpoint = path.user.mePlaylists;
 
   return {
-    async find(params?: { limit: number; offset: number }) {
+    async find(token: string, params?: { limit: number; offset: number }, isThrowError = false) {
       const url = pathBuilder(endpoint, params);
-      return fetcher<MePlaylistModel>(url);
+      return fetcher<MePlaylistModel>(url, undefined, { token, isThrowError });
     },
   };
 };

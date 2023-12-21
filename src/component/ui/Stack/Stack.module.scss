@@ -1,7 +1,7 @@
 .base {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: flex-start;
   justify-content: flex-start;
 }
@@ -79,14 +79,30 @@
 }
 
 // gap
-.sizeS {
+.spaceS {
   gap: 0.5rem;
 }
 
-.sizeM {
+.spaceM {
   gap: 1rem;
 }
 
-.sizeL {
+.spaceL {
   gap: 2rem;
+}
+
+.none {
+  gap: 0;
+}
+
+.paddingS {
+  padding: var(--box-padding-small);
+}
+
+.paddingM {
+  padding: var(--box-padding-medium);
+}
+
+.paddingL {
+  padding: var(--box-padding-large);
 }

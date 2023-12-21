@@ -1,0 +1,52 @@
+.base {
+  line-height: 140%;
+  color: var(--text-body-color);
+}
+
+.sizeXS {
+  font-size: 0.75rem;
+}
+
+.sizeS {
+  font-size: 0.875rem;
+}
+
+.sizeM {
+  font-size: 1rem;
+}
+
+.sizeL {
+  font-size: 1.5rem;
+}
+
+.sizeXL {
+  font-size: 2rem;
+}
+
+.lineHeightS {
+  line-height: 100%;
+}
+
+.lineHeightM {
+  line-height: 140%;
+}
+
+.lineHeightL {
+  line-height: 180%;
+}
+
+// font-weight
+.weightNormal {
+  font-weight: normal;
+}
+.weightBold {
+  font-weight: bold;
+}
+
+.whitespaceWrap {
+  white-space: normal;
+}
+
+.whitespaceNoWrap {
+  white-space: nowrap;
+}
