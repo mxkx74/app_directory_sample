@@ -18,7 +18,7 @@ export const MeLibraryListPresentation = ({ items, ...props }: PresentationProps
         const [image] = item.images ?? [];
         const rounded = item.type === 'playlist' ? 'full' : 'md';
         const type = item.type === 'playlist' ? 'プレイリスト' : 'アルバム';
-        const owner = item.type === 'playlist' ? `・${item.owner?.display_name}` : '';
+        const owner = item.type === 'playlist' ? `・${item.owner}` : '';
 
         return (
           <Stack direction="row" space="M" key={item.id}>

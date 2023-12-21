@@ -56,6 +56,7 @@ describe('meLibraryListInteractor', () => {
           type: 'playlist',
           id: '37i9dQZF1DXcBWIGoYBM5M',
           name: "Today's Top Hits",
+          owner: 'Spotify',
           images: [
             {
               url: 'https://i.scdn.co/image/ab67706f00000003b3b1efcae9a5a944d3c1bb84',

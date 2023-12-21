@@ -25,7 +25,7 @@ const mePlaylistModelListSchema = mePlaylistModelSchema.transform((data) => ({
       id: item.id,
       name: item.name,
       images: item.images,
-      owner: item.owner,
+      owner: item.owner?.display_name,
     };
   }),
 }));

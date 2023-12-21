@@ -23,7 +23,7 @@ export const Default: StoryObj<Props> = {
         id: '2',
         name: 'Item 2',
         type: 'playlist',
-        owner: { display_name: 'Owner 2' },
+        owner: 'Owner 2',
         images: [{ url: 'https://i.pravatar.cc/100', width: null, height: null }],
       },
     ],

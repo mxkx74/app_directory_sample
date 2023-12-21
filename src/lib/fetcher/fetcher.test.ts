@@ -87,7 +87,7 @@ describe('fetcher', () => {
         const result = await transformResponse(mockErrorResponse, false);
 
         expect(result.payload).toBeUndefined();
-        expect(result.error).toEqual({ message: 'Error' });
+        expect(result.error).toEqual({ message: 'Error', status: 404 });
         expect(result.status).toBe(404);
       });
     });
