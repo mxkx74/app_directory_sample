@@ -104,6 +104,12 @@
 @layer sematic {
   :root {
     --text-body-color: var(--color-black-200);
+
+    --box-spacing-xsmall: var(--space-100);
+    --box-spacing-small: var(--space-200);
+    --box-spacing-medium: var(--space-300);
+    --box-spacing-large: var(--space-400);
+    --box-spacing-xlarge: var(--space-500);
   }
 
   .dark {

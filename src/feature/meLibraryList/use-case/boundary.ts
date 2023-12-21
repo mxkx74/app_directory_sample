@@ -44,9 +44,11 @@ export const translateMeLibraryViewModel = (
   const album = meAlbumsModelListSchema.parse(albumData);
   const playlist = mePlaylistModelListSchema.parse(playlistData);
 
+  const items = [...album.items, ...playlist.items].sort((a, b) => ((a?.name ?? '') > (b?.name ?? '') ? 1 : -1));
+
   return {
     ...album,
     ...playlist,
-    items: [...album.items, ...playlist.items],
+    items,
   };
 };
