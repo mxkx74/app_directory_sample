@@ -5,3 +5,4 @@ export * from './Card';
 export * from './Stack';
 export * from './Avatar';
 export * from './Popover';
+export * from './Text';
