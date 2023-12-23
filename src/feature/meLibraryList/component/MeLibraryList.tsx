@@ -1,5 +1,6 @@
-import { type ComponentPropsWithRef } from 'react';
+import { Fragment, type ComponentPropsWithRef } from 'react';
 
+import Link from 'next/link';
 import { getServerSession } from 'next-auth';
 import { Avatar, AvatarImage, Stack, Text, AvatarFallback } from '@/component/ui';
 import { authOptions } from '@/feature/auth/setting';
@@ -13,7 +14,7 @@ type PresentationProps = ComponentPropsWithRef<'div'> & MeLibraryViewModel;
 // presentation component
 export const MeLibraryListPresentation = ({ items, ...props }: PresentationProps) => {
   return (
-    <Stack direction="column" space="M" {...props}>
+    <Stack direction="column" space="none" {...props} className={styles.wrapper}>
       {items.map((item) => {
         const [image] = item.images ?? [];
         const rounded = item.type === 'playlist' ? 'full' : 'md';
@@ -21,16 +22,22 @@ export const MeLibraryListPresentation = ({ items, ...props }: PresentationProps
         const owner = item.type === 'playlist' ? `・${item.owner}` : '';
 
         return (
-          <Stack direction="row" space="M" key={item.id}>
-            <Avatar size="md" rounded={rounded}>
-              {image && <AvatarImage alt={item.name} src={image?.url} />}
-              <AvatarFallback>{item.id}</AvatarFallback>
-            </Avatar>
-            <Stack direction="column" space="none">
-              <Text className={styles.title}>{item.name}</Text>
-              <Text size="S">{`${type} ${owner}`}</Text>
-            </Stack>
-          </Stack>
+          <Fragment key={item.id}>
+            <Link href="/" className={styles.link}>
+              <Stack width="full" direction="row" space="M" padding="S">
+                <Avatar size="md" rounded={rounded}>
+                  {image && <AvatarImage alt={item.name} src={image?.url} />}
+                  <AvatarFallback>{item.name?.substring(0, 2).toUpperCase()}</AvatarFallback>
+                </Avatar>
+                <Stack direction="column" space="none" width="full" className={styles.description}>
+                  <Text overflow="ellipsis" className={styles.title}>
+                    {item.name}
+                  </Text>
+                  <Text overflow="ellipsis" size="S">{`${type} ${owner}`}</Text>
+                </Stack>
+              </Stack>
+            </Link>
+          </Fragment>
         );
       })}
     </Stack>
