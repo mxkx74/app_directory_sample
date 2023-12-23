@@ -110,6 +110,18 @@
     --box-spacing-medium: var(--space-300);
     --box-spacing-large: var(--space-400);
     --box-spacing-xlarge: var(--space-500);
+
+    --box-radius-small: 0.5rem;
+    --box-radius-medium: 1rem;
+    --box-radius-large: 1.5rem;
+
+    --box-padding-small: var(--space-200);
+    --box-padding-medium: var(--space-300);
+    --box-padding-large: var(--space-400);
+    --box-padding-xlarge: var(--space-500);
+
+    --link-hover-background-color: var(--color-black-300);
+    --link-active-background-color: var(--color-black-400);
   }
 
   .dark {

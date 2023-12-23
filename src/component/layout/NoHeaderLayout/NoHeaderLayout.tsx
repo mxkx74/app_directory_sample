@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import { Footer, Header } from '@/component/ui-parts';
+import { Footer, Header } from '@/component/ui-group';
 import styles from './NoHeaderLayout.module.scss';
 
 type Props = {

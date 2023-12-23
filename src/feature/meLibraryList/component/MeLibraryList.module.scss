@@ -1,3 +1,24 @@
-.title {
+.title[class] {
   color: var(--color-white--100);
+}
+
+.wrapper {
+  width: 100%;
+}
+
+.description {
+  overflow: hidden;
+}
+
+.link {
+  display: block;
+  width: 100%;
+  border-radius: var(--box-radius-small);
+  &:hover {
+    background-color: var(--link-hover-background-color);
+  }
+
+  &.active {
+    background-color: var(--link-active-background-color);
+  }
 }
