@@ -96,14 +96,16 @@
     --space-200: 0.5rem;
     --space-300: 0.75rem;
     --space-400: 1rem;
-    --space-500: 1.5rem;
-    --space-600: 2rem;
+    --space-500: 1.25rem;
+    --space-600: 1.5rem;
+    --space-700: 2rem;
   }
 }
 
 @layer sematic {
   :root {
     --text-body-color: var(--color-black-200);
+    --text-active-color: var(--color-white-100);
 
     --box-spacing-xsmall: var(--space-100);
     --box-spacing-small: var(--space-200);
@@ -122,6 +124,11 @@
 
     --link-hover-background-color: var(--color-black-300);
     --link-active-background-color: var(--color-black-400);
+
+    --font-size-small: 0.875rem;
+    --font-size-medium: 1rem;
+    --font-size-large: 1.25rem;
+    --font-size-xlarge: 1.5rem;
   }
 
   .dark {
