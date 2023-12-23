@@ -9,7 +9,7 @@ type Props = {
 
 export const BaseLayout = ({ children }: Props) => {
   return (
-    <Stack direction="row" padding="M" space="S">
+    <Stack direction="row" padding="S" space="S">
       <div className={styles.sidebar}>
         <Sidebar />
       </div>
