@@ -23,20 +23,25 @@ const textVariants = cva(styles.base, {
       wrap: styles.whitespaceWrap,
       nowrap: styles.whitespaceNoWrap,
     },
+    overflow: {
+      default: styles.overflowDefault,
+      ellipsis: styles.overflowEllipsis,
+    },
   },
   defaultVariants: {
     size: 'M',
     lineHeight: 'M',
     whitespace: 'nowrap',
+    overflow: 'default',
   },
 });
 
 type Props = VariantProps<typeof textVariants> & ComponentPropsWithRef<'p'>;
 
 export const Text = forwardRef<HTMLParagraphElement, Props>(
-  ({ size, lineHeight, weight, whitespace, className, children, ...props }, ref) => {
+  ({ size, lineHeight, weight, whitespace, overflow, className, children, ...props }, ref) => {
     return (
-      <p ref={ref} className={textVariants({ size, lineHeight, weight, whitespace, className })} {...props}>
+      <p ref={ref} className={textVariants({ size, lineHeight, weight, whitespace, overflow, className })} {...props}>
         {children}
       </p>
     );

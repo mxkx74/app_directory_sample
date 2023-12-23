@@ -50,3 +50,15 @@
 .whitespaceNoWrap {
   white-space: nowrap;
 }
+
+.overflowEllipsis {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.overflowDefault {
+  overflow: visible;
+  white-space: normal;
+}

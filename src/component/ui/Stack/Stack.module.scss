@@ -91,7 +91,7 @@
   gap: 2rem;
 }
 
-.none {
+.spaceNone {
   gap: 0;
 }
 
@@ -105,4 +105,26 @@
 
 .paddingL {
   padding: var(--box-padding-large);
+}
+
+.widthAuto {
+  width: unset;
+}
+
+.widthFull {
+  width: 100%;
+}
+
+.radiusNone {
+  border-radius: inherit;
+}
+
+.radiusS {
+  border-radius: var(--box-radius-small);
+}
+.radiusM {
+  border-radius: var(--box-radius-medium);
+}
+.radiusL {
+  border-radius: var(--box-radius-large);
 }
