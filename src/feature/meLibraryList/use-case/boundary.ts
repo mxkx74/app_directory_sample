@@ -3,8 +3,8 @@ import { type MeAlbumsModel, meAlbumsModelSchema } from '@/domain/meAlbums/meAlb
 import { type MePlaylistModel, mePlaylistModelSchema } from '@/domain/mePlaylists/mePlaylistsModel';
 
 const meAlbumsModelListSchema = meAlbumsModelSchema.transform((data) => ({
-  nextAlbum: data.next,
-  previousAlbum: data.previous,
+  // nextAlbum: data.next,
+  // previousAlbum: data.previous,
   items: data.items.map((item) => {
     const album = item.album;
     return {
@@ -17,8 +17,9 @@ const meAlbumsModelListSchema = meAlbumsModelSchema.transform((data) => ({
 }));
 
 const mePlaylistModelListSchema = mePlaylistModelSchema.transform((data) => ({
-  nextPlayList: data.next,
-  previousPlayList: data.previous,
+  // TODO: ページネーションの実装
+  // nextPlayList: data.next,
+  // previousPlayList: data.previous,
   items: data.items.map((item) => {
     return {
       type: 'playlist' as const,
