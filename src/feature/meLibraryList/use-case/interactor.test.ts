@@ -26,20 +26,21 @@ describe('meLibraryListInteractor', () => {
       }),
     };
 
+    console.log('beforeEach', meAlbumsModelMock, mePlaylistModelMock);
+
     interactor = meLibraryListInteractor(mockMeAlbumsRepository, mockMePlaylistRepository);
   });
 
-  it('should return the translated MeLibraryViewModel with the combined payload, error, and status from meAlbumsRepository and mePlaylistRepository', async () => {
-    const token = 'test-token';
-    const limit = 20;
-    const offset = 0;
-
-    const result = await interactor.findAllLibrary(token, limit, offset);
+  it('meAlbumsRepositoryとmePlaylistRepositoryからの結合されたペイロード、エラー、ステータスをMeLibraryViewModelを返す', async () => {
+    const result = await interactor.findAllLibrary({
+      token: 'test-token',
+      isThrowError: false,
+      limit: 20,
+      offset: 0,
+    });
 
     expect(result.payload).toEqual({
-      // TODO: add nextAlbum and nextPlayList
-      // nextAlbum: 'https://example.com/next',
-      // previousAlbum: null,
+      nextAlbum: -1,
       items: [
         {
           type: 'album',
@@ -67,9 +68,7 @@ describe('meLibraryListInteractor', () => {
           ],
         },
       ],
-      // TODO: add nextAlbum and nextPlayList
-      // nextPlayList: null,
-      // previousPlayList: null,
+      nextPlaylist: -1,
     });
   });
 });

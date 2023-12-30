@@ -8,16 +8,34 @@ export const meLibraryListInteractor = (
   mePlaylistRepository: MePlaylistRepository,
 ) => {
   return {
-    async findAllLibrary(token: string, limit = 20, offset = 0): Promise<HttpResponse<MeLibraryViewModel>> {
+    async findAllLibrary({
+      token,
+      isThrowError = false,
+      limit = 20,
+      offset,
+      nextAlbum = 0,
+      nextPlaylist = 0,
+    }: {
+      token: string;
+      nextAlbum?: number;
+      nextPlaylist?: number;
+      isThrowError?: boolean;
+      limit?: number;
+      offset?: number;
+    }): Promise<HttpResponse<MeLibraryViewModel>> {
       const [album, playlist] = await Promise.all([
-        meAlbumsRepository.find(token, { limit, offset }),
-        mePlaylistRepository.find(token, { limit, offset }),
+        nextAlbum > -1
+          ? meAlbumsRepository.find(token, { limit, offset: offset ?? nextAlbum }, isThrowError)
+          : Promise.resolve(),
+        nextPlaylist > -1
+          ? mePlaylistRepository.find(token, { limit, offset: offset ?? nextPlaylist }, isThrowError)
+          : Promise.resolve(),
       ]);
 
       return {
-        payload: translateMeLibraryViewModel(album.payload, playlist.payload),
-        error: album.error ?? playlist.error,
-        status: album.status ?? playlist.status,
+        payload: translateMeLibraryViewModel(album?.payload, playlist?.payload),
+        error: album?.error ?? playlist?.error,
+        status: album?.status ?? playlist?.status ?? -1,
       };
     },
   };
