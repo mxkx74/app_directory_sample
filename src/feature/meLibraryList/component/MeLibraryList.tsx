@@ -13,6 +13,22 @@ type PresentationProps = ComponentPropsWithRef<'div'> & {
   items: MeLibraryViewModel['items'];
 };
 
+// type別のデータ取得関数
+const getItemProps = (item: MeLibraryViewModel['items'][number]) => {
+  if (item.kind === 'playlist') {
+    return {
+      rounded: 'full',
+      type: 'プレイリスト',
+      owner: `・${item.owner}`,
+    } as const;
+  }
+  return {
+    rounded: 'md',
+    type: 'アルバム',
+    owner: '',
+  } as const;
+};
+
 // presentation component
 export const MeLibraryListPresentation = ({ loadMore, hasMore, items, ...props }: PresentationProps) => {
   return (
@@ -29,9 +45,7 @@ export const MeLibraryListPresentation = ({ loadMore, hasMore, items, ...props }
       >
         {items.map((item, index) => {
           const [image] = item.images ?? [];
-          const rounded = item.kind === 'playlist' ? 'full' : 'md';
-          const type = item.kind === 'playlist' ? 'プレイリスト' : 'アルバム';
-          const owner = item.kind === 'playlist' ? `・${item.owner}` : '';
+          const { rounded, type, owner } = getItemProps(item);
 
           return (
             <Fragment key={index}>
