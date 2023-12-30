@@ -8,7 +8,7 @@ const meAlbumsModelListSchema = meAlbumsModelSchema.transform((data) => {
     items: data.items.map((item) => {
       const { id, name, images } = item.album ?? {};
       return {
-        type: 'album' as const,
+        kind: 'album' as const,
         id,
         name,
         images,
@@ -23,7 +23,7 @@ const mePlaylistModelListSchema = mePlaylistModelSchema.transform((data) => {
     items: data.items.map((item) => {
       const { id, name, images, owner } = item;
       return {
-        type: 'playlist' as const,
+        kind: 'playlist' as const,
         id,
         name,
         images,
@@ -37,6 +37,7 @@ type meAlbumsModel = z.output<typeof meAlbumsModelListSchema>;
 type mePlaylistModel = z.output<typeof mePlaylistModelListSchema>;
 
 export type MeLibraryViewModel = Omit<meAlbumsModel & mePlaylistModel, 'items'> & {
+  // discriminate unionにする
   items: (meAlbumsModel['items'][number] | mePlaylistModel['items'][number])[];
 };
 

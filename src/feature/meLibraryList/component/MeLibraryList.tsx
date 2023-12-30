@@ -29,9 +29,9 @@ export const MeLibraryListPresentation = ({ loadMore, hasMore, items, ...props }
       >
         {items.map((item, index) => {
           const [image] = item.images ?? [];
-          const rounded = item.type === 'playlist' ? 'full' : 'md';
-          const type = item.type === 'playlist' ? 'プレイリスト' : 'アルバム';
-          const owner = item.type === 'playlist' ? `・${item.owner}` : '';
+          const rounded = item.kind === 'playlist' ? 'full' : 'md';
+          const type = item.kind === 'playlist' ? 'プレイリスト' : 'アルバム';
+          const owner = item.kind === 'playlist' ? `・${item.owner}` : '';
 
           return (
             <Fragment key={index}>
