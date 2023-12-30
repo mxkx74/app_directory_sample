@@ -1,9 +1,8 @@
-import { useMemo } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { meLibraryInteractor } from '.';
 
 export const useMeLibraryList = ({ token }: { token: string }) => {
-  const query = useInfiniteQuery({
+  return useInfiniteQuery({
     queryKey: ['meLibrary'],
     queryFn: async ({ pageParam }) => {
       return meLibraryInteractor.findAllLibrary({
@@ -37,6 +36,4 @@ export const useMeLibraryList = ({ token }: { token: string }) => {
     },
     retry: false,
   });
-
-  return useMemo(() => ({ ...query }), [query]);
 };
