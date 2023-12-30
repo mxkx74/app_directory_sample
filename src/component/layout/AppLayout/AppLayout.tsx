@@ -1,6 +1,7 @@
 import { type ReactNode } from 'react';
 import { Inter } from 'next/font/google';
 import { NextAuthProvider } from '@/provider/NextAuthProvider';
+import { QueryClientProvider } from '@/provider/QueryClientProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -12,7 +13,9 @@ export const AppLayout = ({ children }: Props) => {
   return (
     <html lang="en">
       <body className={`dark ${inter.className}`}>
-        <NextAuthProvider>{children}</NextAuthProvider>
+        <QueryClientProvider>
+          <NextAuthProvider>{children}</NextAuthProvider>
+        </QueryClientProvider>
       </body>
     </html>
   );
