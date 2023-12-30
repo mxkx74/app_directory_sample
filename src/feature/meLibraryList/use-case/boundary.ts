@@ -4,7 +4,7 @@ import { type MePlaylistModel, mePlaylistModelSchema } from '@/domain/mePlaylist
 
 const meAlbumsModelListSchema = meAlbumsModelSchema.transform((data) => {
   return {
-    nextAlbum: Number(new URLSearchParams(data.next?.split('?')[1]).get('offset')) || -1,
+    nextAlbum: Number(new URLSearchParams(data.next?.split('?')[1]).get('offset') ?? -1),
     items: data.items.map((item) => {
       const { id, name, images } = item.album ?? {};
       return {
@@ -19,7 +19,7 @@ const meAlbumsModelListSchema = meAlbumsModelSchema.transform((data) => {
 
 const mePlaylistModelListSchema = mePlaylistModelSchema.transform((data) => {
   return {
-    nextPlaylist: Number(new URLSearchParams(data.next?.split('?')[1]).get('offset')) || -1,
+    nextPlaylist: Number(new URLSearchParams(data.next?.split('?')[1]).get('offset') ?? -1),
     items: data.items.map((item) => {
       const { id, name, images, owner } = item;
       return {
@@ -46,7 +46,6 @@ export const translateMeLibraryViewModel = (
 ): MeLibraryViewModel => {
   const album = meAlbumsModelListSchema.parse(albumData);
   const playlist = mePlaylistModelListSchema.parse(playlistData);
-
   const items = [...album.items, ...playlist.items].sort((a, b) => ((a?.name ?? '') > (b?.name ?? '') ? 1 : -1));
 
   return {
