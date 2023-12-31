@@ -16,13 +16,13 @@ export const Default: StoryObj<Props> = {
       {
         id: '1',
         name: 'Item 1',
-        type: 'album',
+        kind: 'album',
         images: [{ url: 'https://i.pravatar.cc/100', width: null, height: null }],
       },
       {
         id: '2',
         name: 'Item 2',
-        type: 'playlist',
+        kind: 'playlist',
         owner: 'Owner 2',
         images: [{ url: 'https://i.pravatar.cc/100', width: null, height: null }],
       },

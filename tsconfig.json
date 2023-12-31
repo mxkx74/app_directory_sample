@@ -29,8 +29,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts",
-    "./.svgr.index.template.js"
+    ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }

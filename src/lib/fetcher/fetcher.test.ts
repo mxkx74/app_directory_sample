@@ -90,6 +90,17 @@ describe('fetcher', () => {
         expect(result.error).toEqual({ message: 'Error', status: 404 });
         expect(result.status).toBe(404);
       });
+
+      it('isThrowErrorがfalseの場合、Errorがthrowされないこと', async () => {
+        let err;
+        try {
+          await transformResponse(mockErrorResponse, false);
+        } catch (error) {
+          err = error;
+        } finally {
+          expect(err).toBeUndefined();
+        }
+      });
     });
   });
 

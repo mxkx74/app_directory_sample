@@ -4,3 +4,4 @@ import { meLibraryListInteractor as interactor } from './interactor';
 
 export const meLibraryInteractor = interactor(meAlbumsRepository(), mePlaylistRepository());
 export { type MeLibraryViewModel } from './boundary';
+export { useMeLibraryList } from './hooks';
