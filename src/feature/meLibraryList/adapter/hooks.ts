@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { meLibraryInteractor } from '@/feature/meLibraryList/use-case';
 import { meLibraryListKeys } from './cache';
-import { meLibraryInteractor } from '.';
 
 export const useMeLibraryList = ({ token }: { token: string }) => {
   return useInfiniteQuery({

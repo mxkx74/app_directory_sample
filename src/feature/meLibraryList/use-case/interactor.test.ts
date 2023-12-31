@@ -16,6 +16,9 @@ describe('meLibraryListInteractor', () => {
         error: undefined,
         status: 200,
       }),
+      save: jest.fn(),
+      delete: jest.fn(),
+      contain: jest.fn(),
     };
 
     mockMePlaylistRepository = {
