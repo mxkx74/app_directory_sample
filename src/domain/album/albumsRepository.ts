@@ -1,7 +1,7 @@
 import { path } from '@/constant/path';
 import { fetcher } from '@/lib/fetcher';
 import { pathBuilder } from '@/util/path';
-import { albumsModelSchema, type AlbumsModel, type AlbumsListModel } from './albumsModel';
+import { albumsModelSchema, type AlbumsModel, type AlbumsListModel, albumsListModelSchema } from './albumsModel';
 
 const endpoint = path.albums;
 
@@ -19,7 +19,7 @@ export const albumsRepository = {
     const ids = params.ids.join(',');
     const url = pathBuilder(endpoint, { ids });
     return fetcher<AlbumsListModel>(url, undefined, {
-      validationSchema: albumsModelSchema,
+      validationSchema: albumsListModelSchema,
       isThrowError,
       token,
     });
