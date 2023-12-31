@@ -1,4 +1,4 @@
-import { type MeAlbumsModel } from './meAlbumsModel';
+import { type MeAlbumsContainModel, type MeAlbumsModel } from './meAlbumsModel';
 
 export const meAlbumsModelMock = {
   href: 'https://example.com',
@@ -116,3 +116,5 @@ export const meAlbumsModelMock = {
     },
   ],
 } satisfies MeAlbumsModel;
+
+export const meAlbumsContainModelMock = [true, false] satisfies MeAlbumsContainModel;

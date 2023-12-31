@@ -138,3 +138,7 @@ export const meAlbumsModelSchema = z.object({
 });
 
 export type MeAlbumsModel = z.infer<typeof meAlbumsModelSchema>;
+
+export const meAlbumsContainModelSchema = z.array(z.boolean());
+
+export type MeAlbumsContainModel = z.infer<typeof meAlbumsContainModelSchema>;
