@@ -43,7 +43,7 @@ describe('meLibraryListInteractor', () => {
       nextAlbum: -1,
       items: [
         {
-          type: 'album',
+          kind: 'album',
           id: 'album1',
           name: 'Album 1',
           images: [
@@ -55,7 +55,7 @@ describe('meLibraryListInteractor', () => {
           ],
         },
         {
-          type: 'playlist',
+          kind: 'playlist',
           id: '37i9dQZF1DXcBWIGoYBM5M',
           name: "Today's Top Hits",
           owner: 'Spotify',
