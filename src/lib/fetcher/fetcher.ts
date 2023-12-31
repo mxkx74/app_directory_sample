@@ -1,4 +1,4 @@
-import { ZodError, type ZodObject } from 'zod';
+import { type ZodArray, ZodError, type ZodObject } from 'zod';
 import { type keyPath } from '@/constant/path';
 import { type HttpResponse } from '@/type/httpResponse';
 import { HttpError } from '@/util/error';
@@ -38,7 +38,7 @@ export const transformResponse = async <T>(
   response: Response,
   isThrowError: boolean,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  validationSchema?: ZodObject<any>,
+  validationSchema?: ZodObject<any> | ZodArray<any>,
 ): Promise<HttpResponse<T>> => {
   const json = await response.json();
 
@@ -103,7 +103,7 @@ export const fetcher = async <T>(
   init?: RequestInit & { next?: { revalidate: number; tags?: keyPath[] } },
   options?: {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    validationSchema?: ZodObject<any>;
+    validationSchema?: ZodObject<any> | ZodArray<any>;
     token?: string;
     isThrowError?: boolean;
   },
