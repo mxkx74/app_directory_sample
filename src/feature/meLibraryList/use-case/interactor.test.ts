@@ -26,8 +26,6 @@ describe('meLibraryListInteractor', () => {
       }),
     };
 
-    console.log('beforeEach', meAlbumsModelMock, mePlaylistModelMock);
-
     interactor = meLibraryListInteractor(mockMeAlbumsRepository, mockMePlaylistRepository);
   });
 
