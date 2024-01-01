@@ -6,22 +6,20 @@ import { artistsModelSchema, type ArtistsModel, type ArtistsListModel } from './
 const endpoint = path.artists;
 
 export const artistsRepository = {
-  async findByID(token: string, params: { id: string }, isThrowError = false) {
+  async findByID(params: { id: string }, isThrowError = false) {
     const url = pathBuilder(endpoint, params);
     return fetcher<ArtistsModel>(url, undefined, {
       validationSchema: artistsModelSchema,
       isThrowError,
-      token,
     });
   },
 
-  async findList(token: string, params: { ids: string[] }, isThrowError = false) {
+  async findList(params: { ids: string[] }, isThrowError = false) {
     const ids = params.ids.join(',');
     const url = pathBuilder(endpoint, { ids });
     return fetcher<ArtistsListModel>(url, undefined, {
       validationSchema: artistsModelSchema,
       isThrowError,
-      token,
     });
   },
 };

@@ -1,7 +1,6 @@
 import { type ComponentPropsWithRef } from 'react';
 import { ArrowDownIcon, BellIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
-import { getServerSession } from 'next-auth';
 import {
   Avatar,
   AvatarFallback,
@@ -12,7 +11,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/component/ui';
-import { authOptions } from '@/feature/auth/setting';
 import { type MeViewModel } from '@/feature/me/use-case';
 import { meInteractor } from '@/feature/me/use-case/';
 
@@ -82,11 +80,7 @@ export const MeNavigationPresentation = (props: PresentationProps) => {
 
 // container component
 export const MeNavigation = async () => {
-  const session = await getServerSession(authOptions);
-
-  if (!session?.access_token) return null;
-
-  const { payload } = await meInteractor.findMe(session.access_token);
+  const { payload } = await meInteractor.findMe();
 
   return payload && <MeNavigationPresentation {...payload} />;
 };
