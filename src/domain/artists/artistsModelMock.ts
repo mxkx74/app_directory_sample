@@ -1,3 +1,5 @@
+import { type ArtistsListModel, type ArtistsModel } from './artistsModel';
+
 export const artistsModelMock = {
   external_urls: {
     spotify: 'https://open.spotify.com/artist/0TnOYISbd1XYRBk9myaseg',
@@ -30,4 +32,8 @@ export const artistsModelMock = {
   popularity: 81,
   type: 'artist',
   uri: 'spotify:artist:0TnOYISbd1XYRBk9myaseg',
-};
+} satisfies ArtistsModel;
+
+export const artistsListModelMock = {
+  artists: [artistsModelMock, artistsModelMock],
+} satisfies ArtistsListModel;

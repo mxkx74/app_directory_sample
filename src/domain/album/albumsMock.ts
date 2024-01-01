@@ -1,6 +1,6 @@
 import { type AlbumsListModel, type AlbumsModel } from './albumsModel';
 
-export const albumsMock = {
+export const albumsModelMock = {
   album_type: 'album',
   artists: [
     {
@@ -835,6 +835,6 @@ export const albumsMock = {
   uri: 'spotify:album:4aawyAB9vmqN3uQ7FjRGTy',
 } satisfies AlbumsModel;
 
-export const albumsListMock = {
-  albums: [albumsMock],
+export const albumsListModelMock = {
+  albums: [albumsModelMock],
 } satisfies AlbumsListModel;
