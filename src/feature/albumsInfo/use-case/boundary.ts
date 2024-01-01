@@ -28,10 +28,8 @@ export const albumsInfoArtistViewModelSchema = artistsListModelSchema.transform(
   };
 });
 
-type AlbumsInfoModel = z.output<typeof albumsInfoViewModelSchema>;
-type AlbumsInfoArtistModel = z.output<typeof albumsInfoArtistViewModelSchema>;
-
-export type AlbumsInfoViewModel = Omit<AlbumsInfoModel, 'artists'> & AlbumsInfoArtistModel;
+export type AlbumsInfoViewModel = Omit<z.output<typeof albumsInfoViewModelSchema>, 'artists'> &
+  z.output<typeof albumsInfoArtistViewModelSchema>;
 
 export const translateAlbumInfoViewModel = (
   albumData?: AlbumsModel,
