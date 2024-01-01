@@ -24,14 +24,6 @@ describe('refreshAccessToken', () => {
     refresh_token: 'test-refresh-token',
   };
 
-  it('アカウントがnullの場合、トークンは変更されずに返されること', async () => {
-    const account = null;
-
-    const result = await refreshAccessToken({ token, account });
-
-    expect(result).toEqual(token);
-  });
-
   it('アカウントが存在する場合、アカウントの値がtokenに使われること', async () => {
     const account: Account = {
       expires_at: 3600 * 1000,
@@ -48,21 +40,28 @@ describe('refreshAccessToken', () => {
     expect(result.refresh_token).toBe(account.refresh_token);
   });
 
-  it('トークンの有効期限が現在時刻よりも後の場合、トークンは変更されずに返されること', async () => {
-    const result = await refreshAccessToken({ token, account: null });
+  it('トークンの有効期限が現在時刻よりも後の場合、authRepository.refreshAccessTokenがコールされないこと', async () => {
+    const validToken = {
+      ...token,
+      expires_in: Date.now() + 3600 * 1000,
+      access_token: 'test-access-token',
+      refresh_token: 'test-refresh-token',
+    };
+    const result = await refreshAccessToken({ token: validToken, account: null });
 
-    expect(result).toEqual(token);
+    expect(authRepository().refreshAccessToken).not.toHaveBeenCalled();
+    expect(result).toEqual(validToken);
   });
 
-  it('トークンの有効期限が現在時刻よりも前の場合、refreshAccessTokenがコールされること', async () => {
-    const newToken = {
+  it('トークンの有効期限が現在時刻よりも前の場合、authRepository.refreshAccessTokenがコールされること', async () => {
+    const invalidToken = {
       ...token,
       expires_in: Date.now() - 3600 * 1000,
       access_token: 'test-access-token',
       refresh_token: 'test-refresh-token',
     };
 
-    await refreshAccessToken({ token: newToken, account: null });
+    await refreshAccessToken({ token: invalidToken, account: null });
 
     expect(authRepository().refreshAccessToken).toHaveBeenCalled();
   });
