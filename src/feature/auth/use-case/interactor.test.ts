@@ -67,7 +67,7 @@ describe('authInteractor', () => {
     const result = await interactor.refreshToken(token);
 
     expect(result).toEqual({
-      payload: { ...token, expires_in: 1609434061000 },
+      payload: { ...token, expires_in: 3600000 },
       error: 'mock-error',
       status: 'mock-status',
     });

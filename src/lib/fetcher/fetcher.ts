@@ -1,6 +1,8 @@
-import { ZodError, type ZodObject } from 'zod';
+import { type ZodArray, ZodError, type ZodObject } from 'zod';
 import { type keyPath } from '@/constant/path';
+import { authOptions } from '@/feature/auth/setting';
 import { type HttpResponse } from '@/type/httpResponse';
+import { getSessionData } from '@/util/auth';
 import { HttpError } from '@/util/error';
 
 /**
@@ -38,7 +40,7 @@ export const transformResponse = async <T>(
   response: Response,
   isThrowError: boolean,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  validationSchema?: ZodObject<any>,
+  validationSchema?: ZodObject<any> | ZodArray<any>,
 ): Promise<HttpResponse<T>> => {
   const json = await response.json();
 
@@ -103,12 +105,12 @@ export const fetcher = async <T>(
   init?: RequestInit & { next?: { revalidate: number; tags?: keyPath[] } },
   options?: {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    validationSchema?: ZodObject<any>;
-    token?: string;
+    validationSchema?: ZodObject<any> | ZodArray<any>;
     isThrowError?: boolean;
   },
 ): Promise<HttpResponse<T>> => {
-  const { isThrowError = false, token, validationSchema } = options ?? {};
+  const { isThrowError = false, validationSchema } = options ?? {};
+  const { access_token: token } = (await getSessionData(authOptions)) ?? {};
   return fetch(input, {
     ...init,
     headers: {

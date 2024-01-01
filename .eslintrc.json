@@ -45,6 +45,7 @@
         "readonly": "array"
       }
     ],
+    "@typescript-eslint/no-invalid-void-type": "off",
 
     "import/order": [
       "error",

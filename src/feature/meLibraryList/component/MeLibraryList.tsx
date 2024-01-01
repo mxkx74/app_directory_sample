@@ -4,7 +4,8 @@ import { Fragment, type ComponentPropsWithRef } from 'react';
 import Link from 'next/link';
 import InfiniteScroll from 'react-infinite-scroller';
 import { Avatar, AvatarImage, Stack, Text, AvatarFallback } from '@/component/ui';
-import { type MeLibraryViewModel, useMeLibraryList } from '@/feature/meLibraryList/use-case';
+import { useMeLibraryList } from '@/feature/meLibraryList/adapter';
+import { type MeLibraryViewModel } from '@/feature/meLibraryList/use-case';
 import * as styles from './MeLibraryList.module.scss';
 
 type PresentationProps = ComponentPropsWithRef<'div'> & {
@@ -72,8 +73,8 @@ export const MeLibraryListPresentation = ({ loadMore, hasMore, items, ...props }
 };
 
 // container component
-export const MeLibraryList = ({ token }: { token: string }) => {
-  const { data: result, fetchNextPage, hasNextPage } = useMeLibraryList({ token });
+export const MeLibraryList = () => {
+  const { data: result, fetchNextPage, hasNextPage } = useMeLibraryList();
 
   return (
     <MeLibraryListPresentation

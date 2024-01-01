@@ -14,6 +14,8 @@ export const path = {
     meAlbums: `${baseEndpoint}/me/albums`,
     users: `${baseEndpoint}/users`,
   },
+  albums: `${baseEndpoint}/albums`,
+  artists: `${baseEndpoint}/artists`,
 } as const;
 
 export type keyPath = KeyPath<typeof path>;

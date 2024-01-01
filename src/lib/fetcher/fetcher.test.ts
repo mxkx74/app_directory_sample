@@ -6,6 +6,17 @@ type ResponseType = {
   message: string;
 };
 
+jest.mock('@/util/auth', () => ({
+  getSessionData: jest.fn().mockReturnValue({
+    access_token: 'test-access-token',
+    user: {
+      name: 'test-name',
+      email: 'test-email',
+      picture: 'test-picture',
+    },
+  }),
+}));
+
 describe('fetcher', () => {
   describe('transformValidation', () => {
     it('validationErrorがZodErrorのインスタンスの場合、HttpResponseに変換された値を返すこと', async () => {

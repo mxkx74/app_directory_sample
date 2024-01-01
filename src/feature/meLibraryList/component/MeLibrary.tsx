@@ -1,15 +1,10 @@
 import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/feature/auth/setting';
 import { MeLibraryList } from '@/feature/meLibraryList/component/MeLibraryList';
 import { meLibraryInteractor } from '@/feature/meLibraryList/use-case';
 
 export const MeLibrary = async () => {
-  const session = await getServerSession(authOptions);
-  const token = session?.access_token ?? '';
   const queryClient = new QueryClient();
   const meLibraryInitData = await meLibraryInteractor.findAllLibrary({
-    token,
     isThrowError: true,
   });
 
@@ -26,7 +21,7 @@ export const MeLibrary = async () => {
 
   return (
     <HydrationBoundary state={dehydratedState}>
-      <MeLibraryList token={token} />
+      <MeLibraryList />
     </HydrationBoundary>
   );
 };
