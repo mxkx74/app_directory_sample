@@ -19,7 +19,7 @@ describe('refreshAccessToken', () => {
     name: 'test-name',
     email: 'test-email',
     picture: 'test-picture',
-    expires_in: Date.now() + 3600 * 1000,
+    expires_in: 3600 * 1000,
     access_token: 'test-access-token',
     refresh_token: 'test-refresh-token',
   };
@@ -32,9 +32,9 @@ describe('refreshAccessToken', () => {
     expect(result).toEqual(token);
   });
 
-  it('アカウントが存在する場合、アカウントの値がtokeに使われること', async () => {
+  it('アカウントが存在する場合、アカウントの値がtokenに使われること', async () => {
     const account: Account = {
-      expires_at: Date.now() + 3600 * 1000,
+      expires_at: 3600 * 1000,
       access_token: 'account-access-token',
       refresh_token: 'account-refresh-token',
       providerAccountId: '',
