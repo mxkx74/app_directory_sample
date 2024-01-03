@@ -7,7 +7,6 @@ export const useMeLibraryList = () => {
     queryKey: meLibraryListKeys.list(),
     queryFn: async ({ pageParam }) => {
       return meLibraryInteractor.findAllLibrary({
-        isThrowError: true,
         nextAlbum: pageParam.nextAlbum,
         nextPlaylist: pageParam.nextPlaylist,
       });

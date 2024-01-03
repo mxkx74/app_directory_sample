@@ -1,6 +1,6 @@
 import { type HttpResponse } from '@/type/httpResponse';
 
-export class HttpError<T> extends Error {
+export class HttpError<T = never> extends Error {
   readonly status: number = 400;
 
   constructor(data: HttpResponse<T>) {

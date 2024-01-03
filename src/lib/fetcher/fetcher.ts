@@ -48,7 +48,7 @@ export const transformResponse = async <T>(
   if (!response.ok) {
     const data: HttpResponse<T> = {
       payload: undefined,
-      error: { ...json.error, status: response.status },
+      error: { ...json, status: response.status },
       status: response.status,
     };
     // eslint-disable-next-line @typescript-eslint/no-throw-literal
