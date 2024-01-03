@@ -11,7 +11,7 @@ import {
 const endpoint = path.user.meAlbums;
 
 export const meAlbumsRepository = {
-  async find(params: { token: string; limit?: number; offset?: number }, isThrowError = false) {
+  async find(params: { token?: string; limit?: number; offset?: number }, isThrowError = false) {
     const { token, ...parameter } = params;
     const url = pathBuilder(endpoint, parameter);
     return fetcher<MeAlbumsModel>(url, undefined, {
@@ -21,7 +21,7 @@ export const meAlbumsRepository = {
     });
   },
 
-  async save(params: { ids: string[]; token: string }, isThrowError = false) {
+  async save(params: { ids: string[]; token?: string }, isThrowError = false) {
     const { token, ...parameter } = params;
     return fetcher<void>(
       endpoint,
@@ -36,7 +36,7 @@ export const meAlbumsRepository = {
     );
   },
 
-  async delete(params: { ids: string[]; token: string }, isThrowError = false) {
+  async delete(params: { ids: string[]; token?: string }, isThrowError = false) {
     const { token, ...parameter } = params;
     return fetcher<void>(
       endpoint,
@@ -51,7 +51,7 @@ export const meAlbumsRepository = {
     );
   },
 
-  async contain(params: { ids: string[]; token: string }, isThrowError = false) {
+  async contain(params: { ids: string[]; token?: string }, isThrowError = false) {
     const { token, ...parameter } = params;
     const ids = parameter.ids.join(',');
     const url = pathBuilder(endpoint, { ids });

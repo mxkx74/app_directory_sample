@@ -6,7 +6,7 @@ import { artistsModelSchema, type ArtistsModel, type ArtistsListModel } from './
 const endpoint = path.artists;
 
 export const artistsRepository = {
-  async findByID(params: { id: string; token: string }, isThrowError = false) {
+  async findByID(params: { id: string; token?: string }, isThrowError = false) {
     const { token, ...parameter } = params;
     const url = pathBuilder(endpoint, parameter);
     return fetcher<ArtistsModel>(url, undefined, {
@@ -16,7 +16,7 @@ export const artistsRepository = {
     });
   },
 
-  async findList(params: { ids: string[]; token: string }, isThrowError = false) {
+  async findList(params: { ids: string[]; token?: string }, isThrowError = false) {
     const { token, ...parameter } = params;
     const ids = parameter.ids.join(',');
     const url = pathBuilder(endpoint, { ids });

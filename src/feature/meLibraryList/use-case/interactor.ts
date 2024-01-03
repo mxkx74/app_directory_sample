@@ -21,7 +21,7 @@ export const meLibraryListInteractor = (
       isThrowError?: boolean;
       limit?: number;
       offset?: number;
-      token: string;
+      token?: string;
     }): Promise<HttpResponse<MeLibraryViewModel>> {
       const [album, playlist] = await Promise.all([
         nextAlbum > -1
