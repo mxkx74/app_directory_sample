@@ -5,8 +5,8 @@ import { type MeViewModel, meViewModelSchema, type MePlaylistViewModel, mePlayli
 
 export const meInteractor = (meRepository: MeRepository, mePlaylistRepository: MePlaylistRepository) => {
   return {
-    async findMe(): Promise<HttpResponse<MeViewModel>> {
-      const { payload, error, status } = await meRepository.find();
+    async findMe(token: string): Promise<HttpResponse<MeViewModel>> {
+      const { payload, error, status } = await meRepository.find({ token });
 
       return {
         ...(payload && { payload: meViewModelSchema.parse(payload) }),
@@ -15,8 +15,8 @@ export const meInteractor = (meRepository: MeRepository, mePlaylistRepository: M
       };
     },
 
-    async findPlaylist(): Promise<HttpResponse<MePlaylistViewModel>> {
-      const { payload, error, status } = await mePlaylistRepository.find();
+    async findPlaylist(token: string): Promise<HttpResponse<MePlaylistViewModel>> {
+      const { payload, error, status } = await mePlaylistRepository.find({ token });
 
       return {
         ...(payload && { payload: mePlaylistViewModelSchema.parse(payload) }),

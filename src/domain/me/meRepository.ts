@@ -5,8 +5,12 @@ import { fetcher } from '@/lib/fetcher';
 const url = path.user.me;
 
 export const meRepository = {
-  async find(isThrowError = false) {
-    return fetcher<MeModel>(url, undefined, { validationSchema: meModelSchema, isThrowError });
+  async find({ token }: { token: string }, isThrowError = false) {
+    return fetcher<MeModel>(url, undefined, {
+      validationSchema: meModelSchema,
+      isThrowError,
+      token,
+    });
   },
 };
 

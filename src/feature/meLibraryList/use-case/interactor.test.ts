@@ -34,6 +34,7 @@ describe('meLibraryListInteractor', () => {
 
   it('meAlbumsRepositoryとmePlaylistRepositoryからの結合されたペイロード、エラー、ステータスをMeLibraryViewModelを返す', async () => {
     const result = await interactor.findAllLibrary({
+      token: 'token',
       isThrowError: false,
       limit: 20,
       offset: 0,

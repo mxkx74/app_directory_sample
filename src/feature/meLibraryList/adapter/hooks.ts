@@ -2,12 +2,12 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { meLibraryInteractor } from '@/feature/meLibraryList/use-case';
 import { meLibraryListKeys } from './cache';
 
-export const useMeLibraryList = () => {
+export const useMeLibraryList = (token: string) => {
   return useInfiniteQuery({
     queryKey: meLibraryListKeys.list(),
     queryFn: async ({ pageParam }) => {
       return meLibraryInteractor.findAllLibrary({
-        isThrowError: true,
+        token,
         nextAlbum: pageParam.nextAlbum,
         nextPlaylist: pageParam.nextPlaylist,
       });

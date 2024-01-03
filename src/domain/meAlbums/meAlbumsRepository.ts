@@ -11,46 +11,54 @@ import {
 const endpoint = path.user.meAlbums;
 
 export const meAlbumsRepository = {
-  async find(params?: { limit: number; offset: number }, isThrowError = false) {
-    const url = pathBuilder(endpoint, params);
+  async find(params: { token: string; limit?: number; offset?: number }, isThrowError = false) {
+    const { token, ...parameter } = params;
+    const url = pathBuilder(endpoint, parameter);
     return fetcher<MeAlbumsModel>(url, undefined, {
       validationSchema: meAlbumsModelSchema,
       isThrowError,
+      token,
     });
   },
 
-  async save(params: { ids: string[] }, isThrowError = false) {
+  async save(params: { ids: string[]; token: string }, isThrowError = false) {
+    const { token, ...parameter } = params;
     return fetcher<void>(
       endpoint,
       {
         method: 'PUT',
-        body: JSON.stringify(params),
+        body: JSON.stringify(parameter),
       },
       {
         isThrowError,
+        token,
       },
     );
   },
 
-  async delete(params: { ids: string[] }, isThrowError = false) {
+  async delete(params: { ids: string[]; token: string }, isThrowError = false) {
+    const { token, ...parameter } = params;
     return fetcher<void>(
       endpoint,
       {
         method: 'DELETE',
-        body: JSON.stringify(params),
+        body: JSON.stringify(parameter),
       },
       {
         isThrowError,
+        token,
       },
     );
   },
 
-  async contain(params: { ids: string[] }, isThrowError = false) {
-    const ids = params.ids.join(',');
+  async contain(params: { ids: string[]; token: string }, isThrowError = false) {
+    const { token, ...parameter } = params;
+    const ids = parameter.ids.join(',');
     const url = pathBuilder(endpoint, { ids });
     return fetcher<MeAlbumsContainModel>(url, undefined, {
       validationSchema: meAlbumsContainModelSchema,
       isThrowError,
+      token,
     });
   },
 };
