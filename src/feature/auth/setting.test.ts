@@ -5,9 +5,9 @@ import { type SessionModel } from '@/domain/auth/sessionModel';
 import { refreshAccessToken, transformTokenToSession } from '@/feature/auth/setting';
 
 jest.mock('@/domain/auth/authRepository', () => ({
-  authRepository: jest.fn().mockReturnValue({
+  authRepository: {
     refreshAccessToken: jest.fn().mockResolvedValue({ payload: {} }),
-  }),
+  },
 }));
 
 jest.useFakeTimers();
@@ -49,7 +49,7 @@ describe('refreshAccessToken', () => {
     };
     const result = await refreshAccessToken({ token: validToken, account: null });
 
-    expect(authRepository().refreshAccessToken).not.toHaveBeenCalled();
+    expect(authRepository.refreshAccessToken).not.toHaveBeenCalled();
     expect(result).toEqual(validToken);
   });
 
@@ -63,7 +63,7 @@ describe('refreshAccessToken', () => {
 
     await refreshAccessToken({ token: invalidToken, account: null });
 
-    expect(authRepository().refreshAccessToken).toHaveBeenCalled();
+    expect(authRepository.refreshAccessToken).toHaveBeenCalled();
   });
 });
 

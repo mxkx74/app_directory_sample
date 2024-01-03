@@ -73,8 +73,8 @@ export const MeLibraryListPresentation = ({ loadMore, hasMore, items, ...props }
 };
 
 // container component
-export const MeLibraryList = () => {
-  const { data: result, fetchNextPage, hasNextPage } = useMeLibraryList();
+export const MeLibraryList = ({ token }: { token: string }) => {
+  const { data: result, fetchNextPage, hasNextPage } = useMeLibraryList(token);
 
   return (
     <MeLibraryListPresentation
