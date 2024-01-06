@@ -1,29 +1,26 @@
 import { path } from '@/constant/path';
 import { fetcher } from '@/lib/fetcher';
+import { type FetcherOptions } from '@/lib/fetcher/fetcher';
 import { pathBuilder } from '@/util/path';
-import { albumsModelSchema, type AlbumsModel, type AlbumsListModel, albumsListModelSchema } from './albumsModel';
+import { albumsModelSchema, type AlbumsModel, albumsListModelSchema, type AlbumsListModel } from './albumsModel';
 
 const endpoint = path.albums;
 
 export const albumsRepository = {
-  async findByID(params: { id: string; token: string }, isThrowError = false) {
-    const { token, ...parameter } = params;
-    const url = pathBuilder(endpoint, parameter);
+  async findByID(params: { id: string }, options?: FetcherOptions) {
+    const url = pathBuilder(endpoint, params);
     return fetcher<AlbumsModel>(url, undefined, {
+      ...options,
       validationSchema: albumsModelSchema,
-      isThrowError,
-      token,
     });
   },
 
-  async findList(params: { ids: string[]; token: string }, isThrowError = false) {
-    const { token, ...parameter } = params;
-    const ids = parameter.ids.join(',');
+  async findList(params: { ids: string[] }, options?: FetcherOptions) {
+    const ids = params.ids.join(',');
     const url = pathBuilder(endpoint, { ids });
     return fetcher<AlbumsListModel>(url, undefined, {
+      ...options,
       validationSchema: albumsListModelSchema,
-      isThrowError,
-      token,
     });
   },
 };

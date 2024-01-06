@@ -83,7 +83,7 @@ export const MeNavigationPresentation = (props: PresentationProps) => {
 // container component
 export const MeNavigation = async () => {
   const session = await getServerSession(authOptions);
-  const { payload } = await meInteractor.findMe(session?.access_token ?? '');
+  const { payload } = await meInteractor.findMe({ token: session?.access_token ?? '' });
 
   return payload && <MeNavigationPresentation {...payload} />;
 };

@@ -123,3 +123,6 @@ export const fetcher = async <T>(
     .then(async (response) => transformResponse<T>(response, isThrowError, validationSchema))
     .catch(async (error: unknown) => transformErrorResponse<T>(error, isThrowError));
 };
+
+// export type Fetcher = ReturnType<typeof fetcher>;
+export type FetcherOptions = Parameters<typeof fetcher>[2];

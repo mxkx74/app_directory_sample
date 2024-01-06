@@ -36,11 +36,15 @@ const interactor = albumsInfoInteractor(mockAlbumsRepository, mockArtistsReposit
 
 describe('albumsInfoInteractor', () => {
   it('AlbumsRepositoryとArtistsRepositoryからの結合されたペイロード、エラー、ステータスをAlbumsInfoViewModelを返す', async () => {
-    const result = await interactor.getAlbumsInfo({
-      token: 'token',
-      id: '4aawyAB9vmqN3uQ7FjRGTy',
-      isThrowError: false,
-    });
+    const result = await interactor.getAlbumsInfo(
+      {
+        id: '4aawyAB9vmqN3uQ7FjRGTy',
+      },
+      {
+        isThrowError: false,
+        token: 'token',
+      },
+    );
 
     expect(result.payload).toEqual({
       artists: [

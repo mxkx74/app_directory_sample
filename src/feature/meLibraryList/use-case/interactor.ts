@@ -21,14 +21,14 @@ export const meLibraryListInteractor = (
       isThrowError?: boolean;
       limit?: number;
       offset?: number;
-      token: string;
+      token?: string;
     }): Promise<HttpResponse<MeLibraryViewModel>> {
       const [album, playlist] = await Promise.all([
         nextAlbum > -1
-          ? meAlbumsRepository.find({ token, limit, offset: offset ?? nextAlbum }, isThrowError)
+          ? meAlbumsRepository.find({ limit, offset: offset ?? nextAlbum }, { token, isThrowError })
           : Promise.resolve(),
         nextPlaylist > -1
-          ? mePlaylistRepository.find({ token, limit, offset: offset ?? nextPlaylist }, isThrowError)
+          ? mePlaylistRepository.find({ limit, offset: offset ?? nextPlaylist }, { token, isThrowError })
           : Promise.resolve(),
       ]);
 
