@@ -116,6 +116,7 @@
     --box-spacing-large: var(--space-400);
     --box-spacing-xlarge: var(--space-500);
 
+    --box-radius-xsmall: 0.25rem;
     --box-radius-small: 0.5rem;
     --box-radius-medium: 1rem;
     --box-radius-large: 1.5rem;
@@ -133,6 +134,14 @@
     --font-size-medium: 1rem;
     --font-size-large: 1.25rem;
     --font-size-xlarge: 1.5rem;
+    --font-size-2xlarge: 3rem;
+    --font-size-3xlarge: 4.5rem;
+    --font-size-4xlarge: 6rem;
+
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
+    --font-weight-black: 900;
   }
 
   .dark {
