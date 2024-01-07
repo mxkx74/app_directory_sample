@@ -12,6 +12,7 @@ export const albumsInfoViewModelSchema = albumsModelSchema.transform((albumsMode
     release_date,
     artists: [...artists.map(({ id }) => id ?? '')],
     total_tracks,
+    total_duration_ms: albumsModel.tracks.items.reduce((acc, cur) => acc + (cur?.duration_ms ?? 0), 0),
     type,
   };
 });

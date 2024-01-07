@@ -8,7 +8,7 @@ export const albumsInfoInteractor = (albumsRepository: AlbumsRepository, artists
   async getAlbumsInfo({ id }: { id: string }, options?: FetcherOptions) {
     const albums = await albumsRepository.findByID({ id }, options);
     const artists = await artistsRepository.findList(
-      { ids: albums.payload?.artists.filter(Boolean).map((album) => album.id ?? '') ?? [] },
+      { ids: albums.payload?.artists.filter(Boolean).map((artist) => artist.id ?? '') ?? [] },
       options,
     );
 
