@@ -1,14 +1,14 @@
 .wrapper {
-  display: flex;
-  flex-direction: column;
   min-height: 100lvh;
 }
 
 .main {
   display: flex;
   flex-grow: 1;
-  align-items: center;
-  justify-content: center;
+  min-height: calc(100lvh - var(--box-padding-large));
+  padding: var(--box-padding-2xlarge);
+  background-color: var(--box-background-color-foreground);
+  border-radius: var(--box-radius-small);
 }
 
 .sidebar {

@@ -107,6 +107,9 @@
     --text-body-color: var(--color-black-200);
     --text-active-color: var(--color-white-100);
 
+    --box-background-color-background: var(--color-black-100);
+    --box-background-color-foreground: var(--color-black-200);
+
     --box-spacing-xsmall: var(--space-100);
     --box-spacing-small: var(--space-200);
     --box-spacing-medium: var(--space-300);
@@ -121,6 +124,7 @@
     --box-padding-medium: var(--space-300);
     --box-padding-large: var(--space-400);
     --box-padding-xlarge: var(--space-500);
+    --box-padding-2xlarge: var(--space-600);
 
     --link-hover-background-color: var(--color-black-300);
     --link-active-background-color: var(--color-black-400);

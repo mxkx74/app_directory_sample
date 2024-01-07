@@ -1,7 +1,8 @@
 .sidebarMain,
 .sidebarSub {
   width: 100%;
-  background-color: var(--color-black-200);
+  background-color: var(--box-background-color-foreground);
+  border-radius: var(--box-radius-small);
 }
 
 .sidebarSub {
@@ -9,7 +10,7 @@
 }
 
 .sidebarMain {
-  height: calc(100vh - 112px - var(--box-padding-small) * 3);
+  height: calc(100lvh - 112px - var(--box-padding-small) * 3);
   padding: var(--box-padding-small);
   overflow: scroll;
 }
