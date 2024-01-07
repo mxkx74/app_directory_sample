@@ -10,6 +10,7 @@ const stackVariants = cva(styles.base, {
       S: styles.spaceS,
       M: styles.spaceM,
       L: styles.spaceL,
+      XL: styles.spaceXl,
     },
     direction: {
       column: styles.directionColumn,
