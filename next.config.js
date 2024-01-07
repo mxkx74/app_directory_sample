@@ -7,6 +7,9 @@ const nextConfig = {
     // production環境ではerror以外のconsoleを削除する
     removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error'] } : false,
   },
+  images: {
+    domains: ['i.scdn.co'],
+  },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,
