@@ -1,9 +1,9 @@
 .wrapper {
+  z-index: var(--elevation-sticky);
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  padding: 0.5rem;
-  border-bottom: 1px solid #ddd;
+  width: 100%;
 }
 
 .nav {

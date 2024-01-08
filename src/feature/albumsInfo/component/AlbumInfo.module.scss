@@ -1,6 +1,6 @@
 .wrapper {
   align-items: flex-end;
-  width: calc(100vw - calc(420px + (var(--box-spacing-small) * 3) + calc(var(--box-padding-medium) * 3)));
+  width: calc(100vw - calc(420px + (var(--box-spacing-small) * 4) + calc(var(--box-padding-medium) * 4)));
   height: clamp(250px, 50vh, 340px);
 }
 
