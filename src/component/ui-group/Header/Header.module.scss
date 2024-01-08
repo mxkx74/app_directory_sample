@@ -1,4 +1,5 @@
 .wrapper {
+  z-index: var(--elevation-sticky);
   display: flex;
   align-items: flex-end;
   justify-content: space-between;

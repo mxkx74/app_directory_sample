@@ -142,6 +142,20 @@
     --font-weight-medium: 500;
     --font-weight-bold: 700;
     --font-weight-black: 900;
+
+    --elevation-hide: -1;
+    --elevation-auto: 'auto';
+    --elevation-base: 0;
+    --elevation-docked: 10;
+    --elevation-dropdown: 1000;
+    --elevation-sticky: 1100;
+    --elevation-banner: 1200;
+    --elevation-overlay: 1300;
+    --elevation-modal: 1400;
+    --elevation-popover: 1500;
+    --elevation-skipLink: 1600;
+    --elevation-toast: 1700;
+    --elevation-tooltip: 1800;
   }
 
   .dark {
