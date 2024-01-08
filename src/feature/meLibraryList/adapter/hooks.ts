@@ -6,11 +6,13 @@ export const useMeLibraryList = (token: string) => {
   return useSuspenseInfiniteQuery({
     queryKey: meLibraryListKeys.list(),
     queryFn: async ({ pageParam }) => {
-      return meLibraryInteractor.findAllLibrary({
-        token,
-        nextAlbum: pageParam.nextAlbum,
-        nextPlaylist: pageParam.nextPlaylist,
-      });
+      return meLibraryInteractor.findAllLibrary(
+        {
+          nextAlbum: pageParam.nextAlbum,
+          nextPlaylist: pageParam.nextPlaylist,
+        },
+        { token },
+      );
     },
     initialPageParam: {
       nextAlbum: 0,

@@ -110,7 +110,11 @@ describe('albumsInfoInteractor', () => {
       ],
       name: 'Global Warming',
       release_date: '2012-11-16',
-      total_duration_ms: 4008078,
+      total_duration: {
+        hours: 1,
+        minutes: 6,
+        seconds: 48,
+      },
       total_tracks: 18,
       type: 'album',
     });
