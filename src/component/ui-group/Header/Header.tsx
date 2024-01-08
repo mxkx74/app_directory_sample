@@ -1,16 +1,17 @@
-import { Suspense } from 'react';
-import { MeNavigation } from '@/feature/me/component/MeNavigation';
+'use client';
+
+import { HistoryButton } from '@/component/ui-group';
 import styles from './Header.module.scss';
 
-export const Header = () => {
+type Props = {
+  children?: React.ReactNode;
+};
+
+export const Header = ({ children }: Props) => {
   return (
     <header className={styles.wrapper}>
-      <div className="tool" aria-hidden="true"></div>
-      <nav>
-        <Suspense fallback={<>loading</>}>
-          <MeNavigation />
-        </Suspense>
-      </nav>
+      <HistoryButton />
+      <nav>{children}</nav>
     </header>
   );
 };
