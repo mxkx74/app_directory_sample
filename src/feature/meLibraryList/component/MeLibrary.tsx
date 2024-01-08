@@ -9,10 +9,13 @@ export const MeLibrary = async () => {
   const session = await getServerSession(authOptions);
   const token = session?.access_token ?? '';
 
-  const meLibraryInitData = await meLibraryInteractor.findAllLibrary({
-    token: token ?? '',
-    isThrowError: true,
-  });
+  const meLibraryInitData = await meLibraryInteractor.findAllLibrary(
+    {},
+    {
+      token: token ?? '',
+      isThrowError: true,
+    },
+  );
 
   await queryClient.prefetchInfiniteQuery({
     queryKey: ['meLibrary'],
