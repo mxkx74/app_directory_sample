@@ -10,7 +10,7 @@
 }
 
 .sidebarMain {
-  height: calc(100lvh - 112px - var(--box-padding-small) * 3);
+  height: calc(100dvh - 112px - var(--box-padding-small) * 3);
   padding: var(--box-padding-small);
   overflow: scroll;
 }

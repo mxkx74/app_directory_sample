@@ -1,11 +1,11 @@
 .wrapper {
-  min-height: 100lvh;
+  min-height: 100dvh;
 }
 
 .main {
   display: flex;
   flex-grow: 1;
-  min-height: calc(100lvh - var(--box-padding-large));
+  min-height: calc(100dvh - var(--box-padding-large));
   padding: var(--box-padding-2xlarge);
   background-color: var(--box-background-color-foreground);
   border-radius: var(--box-radius-small);
