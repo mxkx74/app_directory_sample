@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import Image from 'next/image';
+import Link from 'next/link';
 import { getServerSession } from 'next-auth';
 import { Avatar, AvatarFallback, AvatarImage, Stack } from '@/component/ui';
 import { type AlbumsInfoViewModel, albumsInfoInteractor } from '@/feature/albumsInfo/use-case';
@@ -38,7 +39,9 @@ export const AlbumInfoPresentation = ({ images, artists, total_duration, name, r
             {artistImage && <AvatarImage alt={artist.name} src={artistImage.url} loading="lazy" />}
             <AvatarFallback>{artist.name?.substring(0, 2).toUpperCase()}</AvatarFallback>
           </Avatar>
-          <span>{artist.name}</span>
+          <span>
+            <Link href={`/artist/${artist.artistId}`}>{artist.name}</Link>
+          </span>
           {releaseYear && <span>{releaseYear}</span>}
           <span>
             {total_tracks}曲, {hours && `${hours}時間`} {minutes && `${minutes}分`} {seconds && `${seconds}秒`}
