@@ -10,12 +10,7 @@ export const meLibraryListInteractor = (
 ) => {
   return {
     async findAllLibrary(
-      {
-        limit = 20,
-        offset,
-        nextAlbum = 0,
-        nextPlaylist = 0,
-      }: {
+      params?: {
         nextAlbum?: number;
         nextPlaylist?: number;
         limit?: number;
@@ -23,6 +18,7 @@ export const meLibraryListInteractor = (
       },
       options?: FetcherOptions,
     ): Promise<HttpResponse<MeLibraryViewModel>> {
+      const { nextAlbum = 0, nextPlaylist = 0, limit = 20, offset } = params ?? {};
       const [album, playlist] = await Promise.all([
         nextAlbum > -1 ? meAlbumsRepository.find({ limit, offset: offset ?? nextAlbum }, options) : Promise.resolve(),
         nextPlaylist > -1
