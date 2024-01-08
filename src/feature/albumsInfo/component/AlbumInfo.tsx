@@ -20,6 +20,8 @@ export const AlbumInfoPresentation = ({
   const [img] = images;
   const [artist] = artists;
   const [artistImage] = artist.images ?? [];
+  const [releaseYear] = release_date.split('-');
+
   const { hours, minutes, seconds } = intervalToDuration({ start: 0, end: total_duration_ms });
   const defaultCoverWidth = 128;
 
@@ -46,7 +48,7 @@ export const AlbumInfoPresentation = ({
             <AvatarFallback>{artist.name?.substring(0, 2).toUpperCase()}</AvatarFallback>
           </Avatar>
           <span>{artist.name}</span>
-          <span>{release_date}</span>
+          {releaseYear && <span>{releaseYear}</span>}
           <span>
             {total_tracks}曲, {hours && `${hours}時間`} {minutes && `${minutes}分`} {seconds && `${seconds}秒`}
           </span>
