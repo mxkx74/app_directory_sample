@@ -1,6 +1,6 @@
 import { type ReactNode } from 'react';
 import { Stack } from '@/component/ui';
-import { Sidebar } from '@/component/ui-group/';
+import { Header, Sidebar } from '@/component/ui-group/';
 import styles from './BaseLayout.module.scss';
 
 type Props = {
@@ -13,7 +13,10 @@ export const BaseLayout = ({ children }: Props) => {
       <div className={styles.sidebar}>
         <Sidebar />
       </div>
-      <main className={styles.main}>{children}</main>
+      <Stack space="S" className={styles.main}>
+        <Header />
+        <main className={styles.content}>{children}</main>
+      </Stack>
     </Stack>
   );
 };
