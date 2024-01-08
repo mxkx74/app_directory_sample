@@ -5,7 +5,7 @@ type Props = { id: string };
 
 export const AlbumPage = ({ id }: Props) => {
   return (
-    <Suspense fallback={<>Loading...</>}>
+    <Suspense>
       <AlbumInfo id={id} />
     </Suspense>
   );
