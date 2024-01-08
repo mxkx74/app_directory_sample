@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/naming-convention */
+import { intervalToDuration } from 'date-fns';
 import { type z } from 'zod';
 import { type AlbumsModel, albumsModelSchema } from '@/domain/album/albumsModel';
 import { type ArtistsListModel, artistsListModelSchema } from '@/domain/artists/artistsModel';
 
 export const albumsInfoViewModelSchema = albumsModelSchema.transform((albumsModel) => {
   const { name, images, release_date, total_tracks, type, artists } = albumsModel;
+  const totalDurationMs = albumsModel.tracks.items.reduce((acc, cur) => acc + (cur?.duration_ms ?? 0), 0);
 
   return {
     name,
@@ -12,7 +14,9 @@ export const albumsInfoViewModelSchema = albumsModelSchema.transform((albumsMode
     release_date,
     artists: [...artists.map(({ id }) => id ?? '')],
     total_tracks,
-    total_duration_ms: albumsModel.tracks.items.reduce((acc, cur) => acc + (cur?.duration_ms ?? 0), 0),
+    total_duration: {
+      ...intervalToDuration({ start: 0, end: totalDurationMs }),
+    },
     type,
   };
 });

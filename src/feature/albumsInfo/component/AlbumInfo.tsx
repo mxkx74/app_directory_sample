@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { intervalToDuration } from 'date-fns';
 import Image from 'next/image';
 import { getServerSession } from 'next-auth';
 import { Avatar, AvatarFallback, AvatarImage, Stack } from '@/component/ui';
@@ -9,20 +8,12 @@ import styles from './AlbumInfo.module.scss';
 
 type Props = AlbumsInfoViewModel;
 
-export const AlbumInfoPresentation = ({
-  images,
-  artists,
-  total_duration_ms,
-  name,
-  release_date,
-  total_tracks,
-}: Props) => {
+export const AlbumInfoPresentation = ({ images, artists, total_duration, name, release_date, total_tracks }: Props) => {
   const [img] = images;
   const [artist] = artists;
   const [artistImage] = artist.images ?? [];
   const [releaseYear] = release_date.split('-');
-
-  const { hours, minutes, seconds } = intervalToDuration({ start: 0, end: total_duration_ms });
+  const { hours, minutes, seconds } = total_duration;
   const defaultCoverWidth = 128;
 
   return (
