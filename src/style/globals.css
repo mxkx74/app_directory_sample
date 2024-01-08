@@ -107,12 +107,16 @@
     --text-body-color: var(--color-black-200);
     --text-active-color: var(--color-white-100);
 
+    --box-background-color-background: var(--color-black-100);
+    --box-background-color-foreground: var(--color-black-200);
+
     --box-spacing-xsmall: var(--space-100);
     --box-spacing-small: var(--space-200);
     --box-spacing-medium: var(--space-300);
     --box-spacing-large: var(--space-400);
     --box-spacing-xlarge: var(--space-500);
 
+    --box-radius-xsmall: 0.25rem;
     --box-radius-small: 0.5rem;
     --box-radius-medium: 1rem;
     --box-radius-large: 1.5rem;
@@ -121,6 +125,7 @@
     --box-padding-medium: var(--space-300);
     --box-padding-large: var(--space-400);
     --box-padding-xlarge: var(--space-500);
+    --box-padding-2xlarge: var(--space-600);
 
     --link-hover-background-color: var(--color-black-300);
     --link-active-background-color: var(--color-black-400);
@@ -129,6 +134,14 @@
     --font-size-medium: 1rem;
     --font-size-large: 1.25rem;
     --font-size-xlarge: 1.5rem;
+    --font-size-2xlarge: 3rem;
+    --font-size-3xlarge: 4.5rem;
+    --font-size-4xlarge: 6rem;
+
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
+    --font-weight-black: 900;
   }
 
   .dark {

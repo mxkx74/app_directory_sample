@@ -50,10 +50,10 @@ export const MeLibraryListPresentation = ({ loadMore, hasMore, items, ...props }
 
           return (
             <Fragment key={index}>
-              <Link href="/" className={styles.link}>
+              <Link href={`/album/${item.id}`} className={styles.link}>
                 <Stack width="full" direction="row" space="M" padding="S">
                   <Avatar size="md" rounded={rounded}>
-                    {image && <AvatarImage alt={item.name} src={image?.url} />}
+                    {image && <AvatarImage alt={item.name} src={image?.url} loading="lazy" />}
                     <AvatarFallback>{item.name?.substring(0, 2).toUpperCase()}</AvatarFallback>
                   </Avatar>
                   <Stack direction="column" space="none" width="full" className={styles.description}>

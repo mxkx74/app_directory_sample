@@ -2,13 +2,13 @@ import { path } from '@/constant/path';
 import { fetcher } from '@/lib/fetcher';
 import { type FetcherOptions } from '@/lib/fetcher/fetcher';
 import { pathBuilder } from '@/util/path';
-import { albumsModelSchema, type AlbumsModel, albumsListModelSchema, type AlbumsListModel } from './albumsModel';
+import { type AlbumsModel, albumsListModelSchema, type AlbumsListModel, albumsModelSchema } from './albumsModel';
 
 const endpoint = path.albums;
 
 export const albumsRepository = {
   async findByID(params: { id: string }, options?: FetcherOptions) {
-    const url = pathBuilder(endpoint, params);
+    const url = `${endpoint}/${params.id}`;
     return fetcher<AlbumsModel>(url, undefined, {
       ...options,
       validationSchema: albumsModelSchema,

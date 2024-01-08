@@ -1,9 +1,9 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import { meLibraryInteractor } from '@/feature/meLibraryList/use-case';
 import { meLibraryListKeys } from './cache';
 
 export const useMeLibraryList = (token: string) => {
-  return useInfiniteQuery({
+  return useSuspenseInfiniteQuery({
     queryKey: meLibraryListKeys.list(),
     queryFn: async ({ pageParam }) => {
       return meLibraryInteractor.findAllLibrary({
