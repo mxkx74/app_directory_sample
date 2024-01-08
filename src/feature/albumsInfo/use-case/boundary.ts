@@ -26,7 +26,7 @@ export const albumsInfoArtistViewModelSchema = artistsListModelSchema.transform(
 
   return {
     artists: artists.map((artist) => ({
-      id: artist.id,
+      artistId: artist.id,
       name: artist.name,
       images: artist.images,
     })),

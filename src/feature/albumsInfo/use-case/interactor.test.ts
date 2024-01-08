@@ -49,7 +49,7 @@ describe('albumsInfoInteractor', () => {
     expect(result.payload).toEqual({
       artists: [
         {
-          id: '0TnOYISbd1XYRBk9myaseg',
+          artistId: '0TnOYISbd1XYRBk9myaseg',
           images: [
             {
               height: 640,
@@ -70,7 +70,7 @@ describe('albumsInfoInteractor', () => {
           name: 'ピットブル',
         },
         {
-          id: '0TnOYISbd1XYRBk9myaseg',
+          artistId: '0TnOYISbd1XYRBk9myaseg',
           images: [
             {
               height: 640,
