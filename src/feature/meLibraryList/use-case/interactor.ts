@@ -1,13 +1,13 @@
-import { type MeAlbumsRepository } from '@/domain/meAlbums/meAlbumsRepository';
-import { type MePlaylistRepository } from '@/domain/mePlaylists/mePlaylistsRepository';
+import { meAlbumsRepository, type MeAlbumsRepository } from '@/domain/meAlbums/meAlbumsRepository';
+import { mePlaylistRepository, type MePlaylistRepository } from '@/domain/mePlaylists/mePlaylistsRepository';
+import { meLibraryListKeys } from '@/feature/meLibraryList/adapter';
 import { type FetcherOptions } from '@/lib/fetcher/fetcher';
+import { queryClient } from '@/provider/QueryClientProvider';
 import { type HttpResponse } from '@/type/httpResponse';
-import { type MeLibraryViewModel, translateMeLibraryViewModel } from './boundary';
+import { isClient } from '@/util/client';
+import { translateMeLibraryViewModel, type MeLibraryViewModel } from './';
 
-export const meLibraryListInteractor = (
-  meAlbumsRepository: MeAlbumsRepository,
-  mePlaylistRepository: MePlaylistRepository,
-) => {
+export const interactor = (meAlbumsRepository: MeAlbumsRepository, mePlaylistRepository: MePlaylistRepository) => {
   return {
     async findAllLibrary(
       params?: {
@@ -18,6 +18,21 @@ export const meLibraryListInteractor = (
       },
       options?: FetcherOptions,
     ): Promise<HttpResponse<MeLibraryViewModel>> {
+      const localData = (isClient() ? queryClient.getQueryData(meLibraryListKeys.all) : undefined) as {
+        pageParams: unknown[];
+        pages: HttpResponse<MeLibraryViewModel>[];
+      };
+
+      console.log('localData', localData);
+
+      // if (localData && [...localData.pageParams].pop().hasNext) {
+      //   return {
+      //     payload: localData.pages[localData.pages.length - 1]?.payload ?? undefined,
+      //     error: undefined,
+      //     status: 200,
+      //   };
+      // }
+
       const { nextAlbum = 0, nextPlaylist = 0, limit = 20, offset } = params ?? {};
       const [album, playlist] = await Promise.all([
         nextAlbum > -1 ? meAlbumsRepository.find({ limit, offset: offset ?? nextAlbum }, options) : Promise.resolve(),
@@ -34,3 +49,5 @@ export const meLibraryListInteractor = (
     },
   };
 };
+
+export const meLibraryListInteractor = interactor(meAlbumsRepository, mePlaylistRepository);
