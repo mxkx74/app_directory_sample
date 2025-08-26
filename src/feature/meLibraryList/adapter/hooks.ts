@@ -3,8 +3,9 @@ import { meLibraryInteractor } from '@/feature/meLibraryList/use-case';
 import { meLibraryListKeys } from './cache';
 
 export const useMeLibraryList = (token: string) => {
+  let count = 0;
   return useSuspenseInfiniteQuery({
-    queryKey: meLibraryListKeys.list(),
+    queryKey: meLibraryListKeys.page(count++),
     queryFn: async ({ pageParam }) => {
       return meLibraryInteractor.findAllLibrary(
         {

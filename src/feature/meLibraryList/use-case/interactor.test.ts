@@ -2,7 +2,7 @@ import { meAlbumsModelMock } from '@/domain/meAlbums/meAlbumsModelMock';
 import { type MeAlbumsRepository } from '@/domain/meAlbums/meAlbumsRepository';
 import { mePlaylistModelMock } from '@/domain/mePlaylists/mePlaylistModelMock';
 import { type MePlaylistRepository } from '@/domain/mePlaylists/mePlaylistsRepository';
-import { meLibraryListInteractor } from './interactor';
+import { interactor as meLibraryListInteractor } from './interactor';
 
 describe('meLibraryListInteractor', () => {
   let mockMeAlbumsRepository: MeAlbumsRepository;
@@ -33,12 +33,16 @@ describe('meLibraryListInteractor', () => {
   });
 
   it('meAlbumsRepositoryとmePlaylistRepositoryからの結合されたペイロード、エラー、ステータスをMeLibraryViewModelを返す', async () => {
-    const result = await interactor.findAllLibrary({
-      token: 'token',
-      isThrowError: false,
-      limit: 20,
-      offset: 0,
-    });
+    const result = await interactor.findAllLibrary(
+      {
+        limit: 20,
+        offset: 0,
+      },
+      {
+        token: 'token',
+        isThrowError: false,
+      },
+    );
 
     expect(result.payload).toEqual({
       nextAlbum: -1,
